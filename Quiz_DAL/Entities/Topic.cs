@@ -1,9 +1,12 @@
-﻿namespace Quiz_DAL.Entities
+﻿using System.Collections.Generic;
+
+namespace Quiz_DAL.Entities
 {
     public class Topic : BaseEntity
     {
         public string Name { get; set; }
         public int TopicNumber { get; set; }
+        public IEnumerable<Question> Questions { get; set; }
         public int SubjectId { get; set; }
         public Subject Subject { get; set; }
     }
