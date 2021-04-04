@@ -8,6 +8,10 @@
       <PackageReference Include="Mapster" Version="7.1.5" />
       <PackageReference Include="Mapster.Core" Version="1.1.5" />
       <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
+      <PackageReference Include="SonarAnalyzer.CSharp" Version="8.20.0.28934">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
@@ -26,8 +30,8 @@
     <Target Name="Mapster">
         <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet build" />
         <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool restore" />
-        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster model -a &quot;$(TargetDir)$(ProjectName).dll&quot; -n &quot;Quiz_BLL.Models&quot;" />
-        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster extension -a &quot;$(TargetDir)$(ProjectName).dll&quot; -o &quot;.\Extensions&quot; -n &quot;Quiz_BLL.Extensions&quot;" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster model -a &quot;$(TargetDir)$(ProjectName).dll&quot; -n &quot;QuizApp.Business.Models&quot;" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster extension -a &quot;$(TargetDir)$(ProjectName).dll&quot; -o &quot;.\Extensions&quot; -n &quot;QuizApp.Business.Extensions&quot;" />
         <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster mapper -a &quot;$(TargetDir)$(ProjectName).dll&quot;" />
     </Target>
     
