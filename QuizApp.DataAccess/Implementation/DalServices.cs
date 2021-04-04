@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Quiz_DAL.Entities;
+using QuizApp.DataAccess.Entities;
 
-namespace Quiz_DAL.Implementations
+namespace QuizApp.DataAccess.Implementation
 {
     public static class DalServices
     {

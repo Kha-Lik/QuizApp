@@ -1,4 +1,4 @@
-namespace Quiz_BLL.Models
+namespace QuizApp.Business.Models
 {
     public partial class QuestionResultDto
     {

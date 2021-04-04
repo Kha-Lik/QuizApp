@@ -1,9 +1,9 @@
 using System;
 using System.Linq.Expressions;
-using Quiz_BLL.Models;
-using Quiz_DAL.Entities;
+using QuizApp.DataAccess.Entities;
+using QuizApp.Business.Models;
 
-namespace Quiz_BLL.Extensions
+namespace QuizApp.Business.Extensions
 {
     public static partial class QuestionMapper
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Quiz_BLL.Models;
+using QuizApp.Business.Models;
 
-namespace Quiz_BLL.Models
+namespace QuizApp.Business.Models
 {
     public partial class TopicDto
     {

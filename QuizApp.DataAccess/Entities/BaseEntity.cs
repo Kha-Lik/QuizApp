@@ -1,4 +1,4 @@
-﻿namespace Quiz_DAL.Entities
+﻿namespace QuizApp.DataAccess.Entities
 {
     public abstract class BaseEntity
     {

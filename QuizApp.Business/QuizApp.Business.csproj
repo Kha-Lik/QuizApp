@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Quiz_DAL\Quiz_DAL.csproj" />
+      <ProjectReference Include="..\QuizApp.DataAccess\QuizApp.DataAccess.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Identity;
 
-namespace Quiz_DAL.Entities
+namespace QuizApp.DataAccess.Entities
 {
     public class User : IdentityUser
     {

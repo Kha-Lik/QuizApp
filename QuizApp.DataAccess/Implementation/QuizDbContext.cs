@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Quiz_DAL.Entities;
+using QuizApp.DataAccess.Entities;
 
-namespace Quiz_DAL.Implementations
+namespace QuizApp.DataAccess.Implementation
 {
     public class QuizDbContext : IdentityDbContext<User>
     {

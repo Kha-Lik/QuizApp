@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Runtime.Serialization;
 using Mapster;
-using Quiz_DAL.Entities;
+using QuizApp.DataAccess.Entities;
 
-namespace Quiz_BLL.MapsterConfig
+namespace QuizApp.Business.MapsterConfig
 {
     public class MappingRegister : ICodeGenerationRegister
     {
@@ -18,7 +18,7 @@ namespace Quiz_BLL.MapsterConfig
                 .ForType<User>().IgnoreNoAttributes(typeof(DataMemberAttribute));
 
             config.GenerateMapper("[name]Mapper")
-                .ForAllTypesInNamespace(Assembly.GetAssembly(typeof(BaseEntity)), "Quiz_DAL.Entities");
+                .ForAllTypesInNamespace(Assembly.GetAssembly(typeof(BaseEntity)), "QuizApp.DataAccess.Entities");
 
         }
     }
@@ -28,7 +28,7 @@ namespace Quiz_BLL.MapsterConfig
         public static AdaptAttributeBuilder ApplyDefaultRule(this AdaptAttributeBuilder builder)
         {
             return builder
-                .ForAllTypesInNamespace(Assembly.GetAssembly(typeof(BaseEntity)), "Quiz_DAL.Entities")
+                .ForAllTypesInNamespace(Assembly.GetAssembly(typeof(BaseEntity)), "QuizApp.DataAccess.Entities")
                 .ExcludeTypes(typeof(BaseEntity), typeof(User))
                 .ShallowCopyForSameType(true)
                 .ForType<Subject>(cfg => cfg.Ignore(s => s.Lecturer))
