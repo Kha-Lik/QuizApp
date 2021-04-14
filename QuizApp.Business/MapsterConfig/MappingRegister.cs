@@ -18,7 +18,8 @@ namespace QuizApp.Business.MapsterConfig
                 .ForType<User>().IgnoreNoAttributes(typeof(DataMemberAttribute));
 
             config.GenerateMapper("[name]Mapper")
-                .ForAllTypesInNamespace(Assembly.GetAssembly(typeof(BaseEntity)), "QuizApp.DataAccess.Entities");
+                .ForAllTypesInNamespace(Assembly.GetAssembly(typeof(BaseEntity)), "QuizApp.DataAccess.Entities")
+                .ExcludeTypes(typeof(User));
 
         }
     }
@@ -34,7 +35,8 @@ namespace QuizApp.Business.MapsterConfig
                 .ForType<Subject>(cfg => cfg.Ignore(s => s.Lecturer))
                 .ForType<Topic>(cfg => cfg.Ignore(t => t.Subject))
                 .ForType<Question>(cfg => cfg.Ignore(q => q.Topic))
-                .ForType<Attempt>(cfg => cfg.Ignore(a => a.Student)
+                .ForType<Answer>(cfg => cfg.Ignore(a => a.Question))
+                .ForType<Attempt>(cfg => cfg.Ignore(at => at.Student)
                     .Ignore(a => a.Topic))
                 .ForType<QuestionResult>(cfg => cfg.Ignore(qr => qr.Attempt)
                     .Ignore(qr => qr.Question));
