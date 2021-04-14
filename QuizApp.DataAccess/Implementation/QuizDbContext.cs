@@ -14,6 +14,7 @@ namespace QuizApp.DataAccess.Implementation
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
         public DbSet<Attempt> Attempts { get; set; }
         public DbSet<QuestionResult> QuestionResults { get; set; }
     }
