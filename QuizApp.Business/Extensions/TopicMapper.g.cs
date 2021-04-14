@@ -1,8 +1,7 @@
 using System;
-using System.Linq;
 using System.Linq.Expressions;
-using QuizApp.DataAccess.Entities;
 using QuizApp.Business.Models;
+using QuizApp.DataAccess.Entities;
 
 namespace QuizApp.Business.Extensions
 {
@@ -14,119 +13,81 @@ namespace QuizApp.Business.Extensions
             {
                 Name = p1.Name,
                 TopicNumber = p1.TopicNumber,
-                Questions = p1.Questions == null ? null : p1.Questions.Select<QuestionDto, Question>(funcMain1),
+                TimeToPass = p1.TimeToPass,
+                QuestionsPerAttempt = p1.QuestionsPerAttempt,
+                MaxAttemptCount = p1.MaxAttemptCount,
                 SubjectId = p1.SubjectId,
                 Id = p1.Id
             };
         }
-        public static Topic AdaptTo(this TopicDto p3, Topic p4)
+        public static Topic AdaptTo(this TopicDto p2, Topic p3)
         {
-            if (p3 == null)
+            if (p2 == null)
             {
                 return null;
             }
-            Topic result = p4 ?? new Topic();
+            Topic result = p3 ?? new Topic();
             
-            result.Name = p3.Name;
-            result.TopicNumber = p3.TopicNumber;
-            result.Questions = p3.Questions == null ? null : p3.Questions.Select<QuestionDto, Question>(funcMain2);
-            result.SubjectId = p3.SubjectId;
-            result.Id = p3.Id;
+            result.Name = p2.Name;
+            result.TopicNumber = p2.TopicNumber;
+            result.TimeToPass = p2.TimeToPass;
+            result.QuestionsPerAttempt = p2.QuestionsPerAttempt;
+            result.MaxAttemptCount = p2.MaxAttemptCount;
+            result.SubjectId = p2.SubjectId;
+            result.Id = p2.Id;
             return result;
             
         }
-        public static Expression<Func<TopicDto, Topic>> ProjectToTopic => p6 => new Topic()
+        public static Expression<Func<TopicDto, Topic>> ProjectToTopic => p4 => new Topic()
         {
-            Name = p6.Name,
-            TopicNumber = p6.TopicNumber,
-            Questions = p6.Questions.Select<QuestionDto, Question>(p7 => new Question()
-            {
-                QuestionNumber = p7.QuestionNumber,
-                TopicId = p7.TopicId,
-                Id = p7.Id
-            }),
-            SubjectId = p6.SubjectId,
-            Id = p6.Id
+            Name = p4.Name,
+            TopicNumber = p4.TopicNumber,
+            TimeToPass = p4.TimeToPass,
+            QuestionsPerAttempt = p4.QuestionsPerAttempt,
+            MaxAttemptCount = p4.MaxAttemptCount,
+            SubjectId = p4.SubjectId,
+            Id = p4.Id
         };
-        public static TopicDto AdaptToDto(this Topic p8)
+        public static TopicDto AdaptToDto(this Topic p5)
         {
-            return p8 == null ? null : new TopicDto()
+            return p5 == null ? null : new TopicDto()
             {
-                Name = p8.Name,
-                TopicNumber = p8.TopicNumber,
-                Questions = p8.Questions == null ? null : p8.Questions.Select<Question, QuestionDto>(funcMain3),
-                SubjectId = p8.SubjectId,
-                Id = p8.Id
-            };
-        }
-        public static TopicDto AdaptTo(this Topic p10, TopicDto p11)
-        {
-            if (p10 == null)
-            {
-                return null;
-            }
-            TopicDto result = p11 ?? new TopicDto();
-            
-            result.Name = p10.Name;
-            result.TopicNumber = p10.TopicNumber;
-            result.Questions = p10.Questions == null ? null : p10.Questions.Select<Question, QuestionDto>(funcMain4);
-            result.SubjectId = p10.SubjectId;
-            result.Id = p10.Id;
-            return result;
-            
-        }
-        public static Expression<Func<Topic, TopicDto>> ProjectToDto => p13 => new TopicDto()
-        {
-            Name = p13.Name,
-            TopicNumber = p13.TopicNumber,
-            Questions = p13.Questions.Select<Question, QuestionDto>(p14 => new QuestionDto()
-            {
-                QuestionNumber = p14.QuestionNumber,
-                TopicId = p14.TopicId,
-                Id = p14.Id
-            }),
-            SubjectId = p13.SubjectId,
-            Id = p13.Id
-        };
-        
-        private static Question funcMain1(QuestionDto p2)
-        {
-            return p2 == null ? null : new Question()
-            {
-                QuestionNumber = p2.QuestionNumber,
-                TopicId = p2.TopicId,
-                Id = p2.Id
-            };
-        }
-        
-        private static Question funcMain2(QuestionDto p5)
-        {
-            return p5 == null ? null : new Question()
-            {
-                QuestionNumber = p5.QuestionNumber,
-                TopicId = p5.TopicId,
+                Name = p5.Name,
+                TopicNumber = p5.TopicNumber,
+                TimeToPass = p5.TimeToPass,
+                QuestionsPerAttempt = p5.QuestionsPerAttempt,
+                MaxAttemptCount = p5.MaxAttemptCount,
+                SubjectId = p5.SubjectId,
                 Id = p5.Id
             };
         }
-        
-        private static QuestionDto funcMain3(Question p9)
+        public static TopicDto AdaptTo(this Topic p6, TopicDto p7)
         {
-            return p9 == null ? null : new QuestionDto()
+            if (p6 == null)
             {
-                QuestionNumber = p9.QuestionNumber,
-                TopicId = p9.TopicId,
-                Id = p9.Id
-            };
+                return null;
+            }
+            TopicDto result = p7 ?? new TopicDto();
+            
+            result.Name = p6.Name;
+            result.TopicNumber = p6.TopicNumber;
+            result.TimeToPass = p6.TimeToPass;
+            result.QuestionsPerAttempt = p6.QuestionsPerAttempt;
+            result.MaxAttemptCount = p6.MaxAttemptCount;
+            result.SubjectId = p6.SubjectId;
+            result.Id = p6.Id;
+            return result;
+            
         }
-        
-        private static QuestionDto funcMain4(Question p12)
+        public static Expression<Func<Topic, TopicDto>> ProjectToDto => p8 => new TopicDto()
         {
-            return p12 == null ? null : new QuestionDto()
-            {
-                QuestionNumber = p12.QuestionNumber,
-                TopicId = p12.TopicId,
-                Id = p12.Id
-            };
-        }
+            Name = p8.Name,
+            TopicNumber = p8.TopicNumber,
+            TimeToPass = p8.TimeToPass,
+            QuestionsPerAttempt = p8.QuestionsPerAttempt,
+            MaxAttemptCount = p8.MaxAttemptCount,
+            SubjectId = p8.SubjectId,
+            Id = p8.Id
+        };
     }
 }

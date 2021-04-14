@@ -65,5 +65,16 @@ namespace QuizApp.Business.Extensions
             Name = p8.Name,
             Surname = p8.Surname
         };
+
+        public static User AdaptToUser(this UserRegistrationModel p9)
+        {
+            return p9 == null ? null : new User()
+            {
+                Name = p9.Name,
+                Surname = p9.Surname,
+                UserName = p9.Email,
+                Email = p9.Email
+            };
+        }
     }
 }

@@ -2,9 +2,9 @@ namespace QuizApp.Business.Models
 {
     public partial class QuestionResultDto
     {
-        public int AttemptId { get; set; }
-        public int QuestionId { get; set; }
+        public string AttemptId { get; set; }
+        public string QuestionId { get; set; }
         public bool Result { get; set; }
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }
