@@ -5,7 +5,7 @@ using QuizApp.DataAccess.Entities;
 
 namespace QuizApp.DataAccess.Implementation
 {
-    public static class DalServices
+    public static class ServiceCollectionExtension
     {
         public static IServiceCollection AddDalServices(this IServiceCollection services, string connectionString)
         {
