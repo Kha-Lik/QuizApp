@@ -9,13 +9,12 @@ using QuizApp.Business.Models;
 using QuizApp.DataAccess.Entities;
 using QuizApp.DataAccess.Implementation;
 
-namespace QuizApp.Business.Implementation
+namespace QuizApp.Business.Implementation.Services
 {
     public class AnswerService : ICrudInterface<AnswerDto>
     {
         private readonly QuizDbContext _context;
         private readonly IServiceHelper<Answer> _helper;
-        //TODO: write validator for this model
         private readonly AbstractValidator<AnswerDto> _validator;
 
         public AnswerService(QuizDbContext context, IServiceHelper<Answer> helper, AbstractValidator<AnswerDto> validator)

@@ -9,13 +9,12 @@ using QuizApp.Business.Models;
 using QuizApp.DataAccess.Entities;
 using QuizApp.DataAccess.Implementation;
 
-namespace QuizApp.Business.Implementation
+namespace QuizApp.Business.Implementation.Services
 {
     public class SubjectService : ICrudInterface<SubjectDto>
     {
         private readonly QuizDbContext _context;
         private readonly IServiceHelper<Subject> _helper;
-        //TODO: write validator for this model
         private readonly AbstractValidator<SubjectDto> _validator;
 
         public SubjectService(QuizDbContext context, IServiceHelper<Subject> helper, AbstractValidator<SubjectDto> validator)
@@ -54,7 +53,7 @@ namespace QuizApp.Business.Implementation
         {
             _helper.ThrowValidationExceptionIfModelIsNull(await _context.Subjects.FindAsync(model.Id));
             await _validator.ValidateAsync(model);
-            
+
             _context.Subjects.Update(model.AdaptToSubject());
             await _context.SaveChangesAsync();
         }
