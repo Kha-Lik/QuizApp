@@ -2,9 +2,9 @@
 using QuizApp.Business.Abstraction;
 using QuizApp.DataAccess.Entities;
 
-namespace QuizApp.Business.Implementation
+namespace QuizApp.Business.Implementation.Validation
 {
-    public class ServiceHelper<TEntity> : IServiceHelper<TEntity> where TEntity: BaseEntity
+    public class ServiceHelper<TEntity> : IServiceHelper<TEntity> where TEntity : BaseEntity
     {
         public void ThrowValidationExceptionIfModelIsNull(TEntity entity)
         {
