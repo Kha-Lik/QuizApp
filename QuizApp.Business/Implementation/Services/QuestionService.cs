@@ -35,7 +35,7 @@ namespace QuizApp.Business.Implementation.Services
 
         public IAsyncEnumerable<QuestionDto> GetEntitiesByPrincipalId(string principalId)
         {
-            return _context.Questions.Where(q => q.TopicId.Equals(principalId)).Select(QuestionMapper.ProjectToDto).AsAsyncEnumerable();
+            return _context.Questions.AsQueryable().Where(q => q.TopicId.Equals(principalId)).Select(QuestionMapper.ProjectToDto).AsAsyncEnumerable();
         }
 
         public IAsyncEnumerable<QuestionDto> GetAllAsync()
