@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FluentValidation;
 using QuizApp.Business.Abstraction;
 using QuizApp.DataAccess.Entities;
 
