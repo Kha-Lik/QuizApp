@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
-using QuizApp.DataAccess.Entities;
 using QuizApp.Business.Models;
+using QuizApp.DataAccess.Entities;
 
 namespace QuizApp.Business.Extensions
 {

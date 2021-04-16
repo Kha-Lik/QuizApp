@@ -1,10 +1,10 @@
 namespace QuizApp.Business.Models
 {
-    public partial class QuestionResultDto
+    public partial class AnswerDto
     {
-        public string AttemptId { get; set; }
         public string QuestionId { get; set; }
-        public bool Result { get; set; }
+        public string AnswerText { get; set; }
+        public bool IsCorrect { get; set; }
         public string Id { get; set; }
     }
 }
