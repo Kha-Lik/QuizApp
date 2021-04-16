@@ -6,8 +6,8 @@ namespace QuizApp.Business.Abstraction
 {
     public interface ITestService
     {
-        Task<IEnumerable<AttemptDto>> GetTestResultsForStudentAsync(UserDto student, int topicId);
-        Task<TestModel> GenerateTestForTopicAsync(UserDto student, int topicId);
-        Task SubmitTestAsync(TestModel generatedTest);
+        Task<IEnumerable<AttemptDto>> GetTestResultsForStudentAsync(UserDto student, string topicId);
+        Task<TestModel> GenerateTestForTopicAsync(UserDto student, string topicId);
+        Task SubmitTestAsync(TestModel test);
     }
 }
