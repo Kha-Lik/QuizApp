@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace QuizApp.API.Controllers
 {
-    [Authorize(Roles = "Lecturer")]
     [Route("api/[controller]")]
     [ApiController]
     public class SubjectController : Controller
@@ -22,24 +21,28 @@ namespace QuizApp.API.Controllers
             _subjectService = subjectService;
         }
 
+        [Authorize(Roles = "Lecturer, Student")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SubjectDto>>> GetAll()
         {
             return await _subjectService.GetAllAsync().ToListAsync();
         }
 
+        [Authorize(Roles = "Lecturer, Student")]
         [HttpGet("{id}")]
         public async Task<ActionResult<SubjectDto>> GetById(string id)
         {
             return await _subjectService.GetByIdAsync(id);
         }
 
+        [Authorize(Roles = "Lecturer, Student")]
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<SubjectDto>>> GetByLecturerId(string id)
         {
             return await _subjectService.GetEntitiesByPrincipalId(id).ToListAsync();
         }
 
+        [Authorize(Roles = "Lecturer")]
         [HttpPost]
         public async Task<ActionResult<SubjectDto>> Create(SubjectDto subjectDto)
         {
@@ -55,6 +58,7 @@ namespace QuizApp.API.Controllers
             return Ok(subjectDto);
         }
 
+        [Authorize(Roles = "Lecturer")]
         [HttpPut]
         public async Task<ActionResult<SubjectDto>> Update(SubjectDto subjectDto)
         {
@@ -63,6 +67,7 @@ namespace QuizApp.API.Controllers
             return Ok(subjectDto);
         }
 
+        [Authorize(Roles = "Lecturer")]
         [HttpDelete]
         public async Task<ActionResult> Delete(string id)
         {
