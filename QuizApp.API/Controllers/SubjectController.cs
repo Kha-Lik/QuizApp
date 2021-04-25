@@ -50,7 +50,7 @@ namespace QuizApp.API.Controllers
             {
                 await _subjectService.CreateEntityAsync(subjectDto);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
@@ -68,7 +68,7 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer")]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(string id)
         {
             await _subjectService.DeleteEntityByIdAsync(id);
