@@ -28,7 +28,8 @@ namespace QuizApp.Business.Extensions
                 .AddTransient<AbstractValidator<AnswerDto>, AnswerValidator>()
                 .AddTransient<AbstractValidator<AttemptDto>, AttemptValidator>()
                 .AddTransient<AbstractValidator<QuestionResultDto>, QuestionResultValidator>()
-                .AddTransient<AbstractValidator<TestModel>, TestValidator>();
+                .AddTransient<AbstractValidator<TestModel>, TestValidator>()
+                .AddTransient<AbstractValidator<UserDto>, UserValidator>();
 
             return services;
         }
