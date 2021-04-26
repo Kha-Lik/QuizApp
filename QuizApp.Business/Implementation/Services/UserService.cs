@@ -16,6 +16,7 @@ using QuizApp.Business.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using QuizApp.Business.Implementation.Exceptions;
+using FluentValidation;
 
 namespace QuizApp.Business.Implementation.Services
 {
@@ -24,14 +25,19 @@ namespace QuizApp.Business.Implementation.Services
         private readonly QuizDbContext _quizDbContext;
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly JwtSettings _jwtSettings;
+        private readonly AbstractValidator<UserDto> _validator;
 
-        public UserService(QuizDbContext dbContext, SignInManager<User> signInManager, UserManager<User> userManager, IOptions<JwtSettings> jwtSettings)
+        public UserService(QuizDbContext dbContext, SignInManager<User> signInManager, UserManager<User> userManager, IOptions<JwtSettings> jwtSettings,
+            AbstractValidator<UserDto> validator, RoleManager<IdentityRole> roleManager)
         {
             _quizDbContext = dbContext;
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
             _jwtSettings = jwtSettings.Value;
+            _validator = validator;
         }
         public async Task<object> Login(UserLoginModel model)
         {
@@ -56,13 +62,37 @@ namespace QuizApp.Business.Implementation.Services
             await _signInManager.SignOutAsync();
         }
 
+        public IAsyncEnumerable<UserDto> GetUsersAsync()
+        {
+            return _quizDbContext.Users.Select(UserMapper.ProjectToDto).AsAsyncEnumerable();
+        }
+
+        public async Task SetRoleAsync(UserDto model)
+        {
+            var user = await _quizDbContext.Users.FindAsync(model.Id);
+            if (user != null)
+            {
+                await _validator.ValidateAsync(model);
+
+                _quizDbContext.Users.Update(model.AdaptToUser());
+                await _userManager.AddToRoleAsync(user, model.Role);
+                await _quizDbContext.SaveChangesAsync();
+            }
+        }
+
+        public IAsyncEnumerable<IdentityRole> GetRolesAsync()
+        {
+            return _roleManager.Roles.ToAsyncEnumerable();
+        }
+
         private object GenerateJwtToken(string email, User user)
         {
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));

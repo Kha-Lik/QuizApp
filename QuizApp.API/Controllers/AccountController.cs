@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using QuizApp.Business.Abstraction;
 using QuizApp.Business.Models;
@@ -69,6 +70,35 @@ namespace QuizApp.API.Controllers
         {
             await _userService.SignOut();
             return Ok();
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpGet("Get all users")]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
+        {
+            return await _userService.GetUsersAsync().ToListAsync(); 
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpGet("Get all roles")]
+        public async Task<ActionResult<IEnumerable<IdentityRole>>> GetAllRoles()
+        {
+            return await _userService.GetRolesAsync().ToListAsync();
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPut]
+        public async Task<ActionResult> SetRoleAsync(UserDto model)
+        {
+            try
+            {
+                await _userService.SetRoleAsync(model);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            return Ok(model);
         }
     }
 }

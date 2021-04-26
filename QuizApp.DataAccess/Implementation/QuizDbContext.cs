@@ -18,4 +18,3 @@ namespace QuizApp.DataAccess.Implementation
         public DbSet<Attempt> Attempts { get; set; }
         public DbSet<QuestionResult> QuestionResults { get; set; }
     }
-}

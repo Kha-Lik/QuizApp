@@ -12,5 +12,12 @@ namespace QuizApp.Business.Abstraction
         Task<object> Login(UserLoginModel model);
 
         Task SignOut();
+
+        IAsyncEnumerable<UserDto> GetUsersAsync();
+
+        Task SetRoleAsync(UserDto model);
+
+        IAsyncEnumerable<IdentityRole> GetRolesAsync();
+
     }
 }
