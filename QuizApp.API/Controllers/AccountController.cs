@@ -40,7 +40,13 @@ namespace QuizApp.API.Controllers
         {
             try
             {
-                await _userService.Register(model);
+                var result = await _userService.Register(model);
+
+                if (!result.Succeeded)
+                {
+                    string errors = result.Errors.Aggregate("", (current, identityError) => current + (identityError.Description + "\n"));
+                    return BadRequest(errors);
+                }
 
                 UserLoginModel loginModel = new UserLoginModel
                 {
@@ -58,7 +64,7 @@ namespace QuizApp.API.Controllers
             }
         }
 
-        [HttpPost("SignOut")]
+        [HttpPost("Sign Out")]
         public async Task<ActionResult> SignOut()
         {
             await _userService.SignOut();

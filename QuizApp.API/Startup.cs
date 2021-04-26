@@ -82,18 +82,19 @@ namespace QuizApp.API
                 app.UseHsts();
             }
 
-            app.UseSwagger();
-            
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "QuizApp");
-            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment()) app.UseSpaStaticFiles();
 
             app.UseRouting();
+
+            app.UseSwagger();
+            
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "QuizApp");
+            });
 
             app.UseAuthentication();
             app.UseAuthorization();

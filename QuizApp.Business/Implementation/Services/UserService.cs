@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using QuizApp.Business.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using QuizApp.Business.Implementation.Exceptions;
 
 namespace QuizApp.Business.Implementation.Services
 {
@@ -40,10 +41,10 @@ namespace QuizApp.Business.Implementation.Services
                 var user = await _userManager.Users.SingleOrDefaultAsync(u => u.Email == model.Email);
                 return GenerateJwtToken(model.Email, user);
             }
-            return result;
+            throw new LoginException("Login failed");
         }
 
-        public async Task<object> Register(UserRegistrationModel model)
+        public async Task<IdentityResult> Register(UserRegistrationModel model)
         {
             var user = UserMapper.AdaptToUser(model);
             var result = await _userManager.CreateAsync(user, model.Password);

@@ -18,7 +18,8 @@ namespace QuizApp.Business.Extensions
                 .AddTransient<ICrudInterface<AnswerDto>, AnswerService>()
                 .AddTransient<ICrudInterface<AttemptDto>, AttemptService>()
                 .AddTransient<ICrudInterface<QuestionResultDto>, QuestionResultService>()
-                .AddTransient<ITestService, TestService>();
+                .AddTransient<ITestService, TestService>()
+                .AddTransient<IUserService, UserService>();
 
             services.AddTransient(typeof(IServiceHelper<>), typeof(ServiceHelper<>));
 

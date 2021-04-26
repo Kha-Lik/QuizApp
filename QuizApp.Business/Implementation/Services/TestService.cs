@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using QuizApp.Business.Abstraction;
 using QuizApp.Business.Extensions;
+using QuizApp.Business.Implementation.Exceptions;
 using QuizApp.Business.Models;
 using QuizApp.DataAccess.Implementation;
 

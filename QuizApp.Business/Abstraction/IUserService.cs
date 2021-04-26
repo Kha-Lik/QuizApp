@@ -7,7 +7,7 @@ namespace QuizApp.Business.Abstraction
 {
     public interface IUserService
     {
-        Task<object> Register(UserRegistrationModel model);
+        Task<IdentityResult> Register(UserRegistrationModel model);
 
         Task<object> Login(UserLoginModel model);
 

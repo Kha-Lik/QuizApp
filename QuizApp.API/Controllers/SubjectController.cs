@@ -29,14 +29,14 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("{id}")]
+        [HttpGet("Get by id = {id}")]
         public async Task<ActionResult<SubjectDto>> GetById(string id)
         {
             return await _subjectService.GetByIdAsync(id);
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("{id}")]
+        [HttpGet("Get by lecturer id = {id}")]
         public async Task<ActionResult<IEnumerable<SubjectDto>>> GetByLecturerId(string id)
         {
             return await _subjectService.GetEntitiesByPrincipalId(id).ToListAsync();
