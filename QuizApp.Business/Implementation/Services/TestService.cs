@@ -43,7 +43,7 @@ namespace QuizApp.Business.Implementation.Services
         {
             await _userValidator.ValidateAsync(student);
             
-            return  _attemptService.GetEntitiesByPrincipalId(student.Id)
+            return _attemptService.GetEntitiesByPrincipalId(student.Id)
                 .Where(a => a.TopicId.Equals(topicId)).ToEnumerable();
         }
 
