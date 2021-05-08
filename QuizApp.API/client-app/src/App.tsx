@@ -8,6 +8,8 @@ import NotFound from "./components/notFound";
 import SubjectTopicTable from "./components/subjectTopicTable";
 import auth from "./services/authService";
 import "bootstrap/dist/css/bootstrap.css";
+import "@fortawesome/fontawesome-free/css/all.css"
+import StudentTestResults from "./components/studentTestResults";
 
 class App extends Component {
     state = {user: null};
@@ -21,22 +23,23 @@ class App extends Component {
         const {user} = this.state;
 
         return (
-            <Fragment>
-                <CssBaseline/>
-                {user && <NavBar/>}
-                <Container>
-                    <BrowserRouter>
-                        <Switch>
+            <BrowserRouter>
+                <Fragment>
+                    <CssBaseline/>
+                    {user && <NavBar/>}
+                    <Container>
+                        <Fragment><Switch>
                             <Route path="/signin" component={SignIn}/>
                             <Route path="/signup" component={SignUp}/>
                             <Route path="/not-found" component={NotFound}/>
-                            <Route path="/subjectTopictable" component={SubjectTopicTable}/>
+                            <Route path="/subjectTopicTable" component={SubjectTopicTable}/>
+                            <Route path="/studentTestResults" component={StudentTestResults}/>
                             <Redirect from="/" to="/not-found"/>
                             <Redirect to="/not-found"/>
-                        </Switch>
-                    </BrowserRouter>
-                </Container>
-            </Fragment>
+                        </Switch></Fragment>
+                    </Container>
+                </Fragment>
+            </BrowserRouter>
         );
     }
 }
