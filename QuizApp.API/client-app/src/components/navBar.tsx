@@ -1,38 +1,35 @@
 import React from "react";
-import {AppBar, Link, Toolbar, Typography} from "@material-ui/core";
-import {BrowserRouter, NavLink} from "react-router-dom";
+import {AppBar, Button, Toolbar, Typography} from "@material-ui/core";
+import {BrowserRouter, Link as RouterLink} from "react-router-dom";
+import grey from "@material-ui/core/colors/grey"
 
 export interface NavBarProps {
 }
+
+const primary = grey[50];
 
 function NavBar() {
     return (
         <BrowserRouter>
             <AppBar position="sticky" color="primary">
                 <Toolbar variant="dense">
-                    <Typography variant="h4">QuizApp</Typography>
-                    <Link
-                        component={NavLink}
-                        className="nav-item nav-link"
+                    <Typography className="mr-2" variant="h4">QuizApp</Typography>
+                    <Button
+                        component={RouterLink}
                         to="/subjectTopicTable"
-                        color="inherit"
-                        underline="none"
                     >
-                        <Typography variant="h6" color="inherit">
+                        <Typography variant="h6" style={{color: primary}}>
                             Tests
                         </Typography>
-                    </Link>
-                    <Link
-                        component={NavLink}
-                        className="nav-item nav-link"
+                    </Button>
+                    <Button
+                        component={RouterLink}
                         to="/studentTestResults"
-                        color="inherit"
-                        underline="none"
                     >
-                        <Typography variant="h6" color="inherit">
+                        <Typography variant="h6" style={{color: primary}}>
                             Results
                         </Typography>
-                    </Link>
+                    </Button>
                 </Toolbar>
             </AppBar>
         </BrowserRouter>
