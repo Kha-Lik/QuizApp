@@ -21,11 +21,13 @@
     "joi-browser": "^13.4.0",
     "jwt-decode": "^3.1.2",
     "ky": "^0.27.0",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-toastify": "^7.0.4",
+    "react-window": "^1.8.6",
     "tostify": "0.0.1",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.1"
@@ -53,5 +55,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.168",
+    "@types/react-window": "^1.8.3"
   }
 }
