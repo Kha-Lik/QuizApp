@@ -1,6 +1,6 @@
-import { Question } from './../appTypes.d';
+import {Question} from '../appTypes';
 
-const questions : Question[] = [
+const questions: Question[] = [
     {
         Id: "1",
         TopicId: "1",
@@ -52,11 +52,11 @@ const questions : Question[] = [
     }
 ]
 
-function getAllQuestions() : Question[]{
+function getAllQuestions(): Question[] {
     return questions;
 }
 
-function getQuestionsByTopicid(id : string) : Question[]{
+function getQuestionsByTopicid(id: string): Question[] {
     return questions.filter((q) => q.TopicId === id);
 }
 

@@ -1,12 +1,13 @@
-function init() {}
+function init() {
+}
 
-function log(error : any) {
-  console.error(error);
+function log(error: any) {
+    console.error(error);
 }
 
 const logger = {
-  init,
-  log
+    init,
+    log
 };
 
 export default logger;

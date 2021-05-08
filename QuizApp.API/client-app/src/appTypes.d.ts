@@ -1,20 +1,20 @@
 export interface Subject {
-    Id : string,
-    LecturerId : string,
-    Name : string
+    Id: string,
+    LecturerId: string,
+    Name: string
 }
 
-export interface Topic{
-    Id : string,
-    SubjectId : string,
-    Name : string,
-    TopicNumber : number,
-    TimeToPass : number,
-    QuestionsPerAttempt : number,
-    MaxAttemptCount : number
+export interface Topic {
+    Id: string,
+    SubjectId: string,
+    Name: string,
+    TopicNumber: number,
+    TimeToPass: number,
+    QuestionsPerAttempt: number,
+    MaxAttemptCount: number
 }
 
-export interface Question{
+export interface Question {
     Id: string,
     TopicId: string,
     QuestionNumber: number,
@@ -22,9 +22,9 @@ export interface Question{
     Answers: Answer[]
 }
 
-export interface Answer{
+export interface Answer {
     Id: string,
     QuestionId: string,
-    Answertext: string,
+    AnswerText: string,
     IsCorrect: boolean
 }
