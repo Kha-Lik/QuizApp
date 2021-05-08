@@ -39,7 +39,7 @@ export default function ModalQuestionCreate({
             }}
         >
             <Fade in={openState}>
-                <Paper elevation={5} variant="outlined">
+                <Paper elevation={5} variant="outlined" style={{width: "80%"}}>
                     <QuestionCreationForm
                         topicId={selectedTopic}
                         onSubmit={() => doClose()}

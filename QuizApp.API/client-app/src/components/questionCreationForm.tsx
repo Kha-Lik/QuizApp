@@ -61,12 +61,6 @@ class QuestionCreationForm extends React.Component<QuestionCreationFormProps,
         };
     }
 
-    handleIdChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const question: Question = {...this.state.question};
-        question.Id = event.target.value;
-        this.setState({question});
-    };
-
     handleTextChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         const question: Question = {...this.state.question};
         question.QuestionText = event.target.value;
@@ -126,23 +120,16 @@ class QuestionCreationForm extends React.Component<QuestionCreationFormProps,
                 </Typography>
                 <Divider/>
                 <form noValidate autoComplete="off" onSubmit={this.doSubmit}>
-                    <div className="m-2">
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <RequiredInput
-                                    id="id"
-                                    label="Question ID"
-                                    onChange={this.handleIdChanged}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                    <div className="m-1">
+                        <Grid container spacing={2} xs={12} style={{alignContent: "center"}}>
+                            <Grid item xs={12} className="ml-2">
                                 <RequiredInput
                                     id="number"
                                     label="Question number"
                                     onChange={this.handleNumberChanged}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className="ml-2">
                                 <RequiredInput
                                     id="text"
                                     label="Question's text"
@@ -151,50 +138,62 @@ class QuestionCreationForm extends React.Component<QuestionCreationFormProps,
                             </Grid>
                         </Grid>
                         <Paper variant="outlined" elevation={3} className="m-2">
-                            <div className="row">
-                                <div className="col-auto">
-                                    <Typography className="m-2" variant="h6">
+                            <div className="row" style={{alignContent: "right"}}>
+                                <div className="col-9">
+                                    <Typography className="mx-3 my-2" variant="h6">
                                         Відповіді
                                     </Typography>
                                 </div>
-                                <div className="col-auto" style={{alignItems: "right"}}>
+                                <div className="col-3" style={{textAlign: "center"}}>
                                     <Typography className="m-2" variant="h6">
                                         Правильна
                                     </Typography>
                                 </div>
                             </div>
                             <Divider/>
-                            <div className="row">
-                                <div className="col-auto">
+                            <div className="row mx-sm-n1">
+                                <div className="col-10">
                                     <RequiredInput
                                         id="firstAnswer"
                                         label="First answer"
                                         onChange={this.handleAnswerChanged}
                                     />
-                                    <RequiredInput
-                                        id="secondAnswer"
-                                        label="Second answer"
-                                        onChange={this.handleAnswerChanged}
-                                    />
-                                    <RequiredInput
-                                        id="thirdAnswer"
-                                        label="Third answer"
-                                        onChange={this.handleAnswerChanged}
-                                    />
                                 </div>
-                                <div className="col-1">
+                                <div className="col-1 my-auto">
                                     <Checkbox
                                         id="firstAnswerCheck"
                                         checked={firstAnswerCheck}
                                         onChange={this.handleAnswerChecked}
                                         inputProps={{"aria-label": "first answer checkbox"}}
                                     />
+                                </div>
+                            </div>
+                            <div className="row mx-sm-n1">
+                                <div className="col-10">
+                                    <RequiredInput
+                                        id="secondAnswer"
+                                        label="Second answer"
+                                        onChange={this.handleAnswerChanged}
+                                    />
+                                </div>
+                                <div className="col-1 my-auto">
                                     <Checkbox
                                         id="secondAnswerCheck"
                                         checked={secondAnswerCheck}
                                         onChange={this.handleAnswerChecked}
                                         inputProps={{"aria-label": "second answer checkbox"}}
                                     />
+                                </div>
+                            </div>
+                            <div className="row mx-sm-n1">
+                                <div className="col-10">
+                                    <RequiredInput
+                                        id="thirdAnswer"
+                                        label="Third answer"
+                                        onChange={this.handleAnswerChanged}
+                                    />
+                                </div>
+                                <div className="col-1 my-auto">
                                     <Checkbox
                                         id="thirdAnswerCheck"
                                         checked={thirdAnswerCheck}
