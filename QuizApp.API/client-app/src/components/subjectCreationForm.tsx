@@ -17,10 +17,6 @@ class SubjectCreationForm extends React.Component<SubjectCreationFormProps,
         Name: "",
     };
 
-    handleIdChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({Id: event.target.value});
-    };
-
     handleNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({Name: event.target.value});
     };
@@ -45,11 +41,6 @@ class SubjectCreationForm extends React.Component<SubjectCreationFormProps,
                 <Divider/>
                 <form noValidate autoComplete="off" onSubmit={this.doSubmit}>
                     <div className="m-2">
-                        <RequiredInput
-                            id="Id"
-                            label="Subject ID"
-                            onChange={this.handleIdChanged}
-                        />
                         <RequiredInput
                             id="Name"
                             label="Name"

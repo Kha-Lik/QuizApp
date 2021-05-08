@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {Topic} from "../appTypes";
-import {Button, Divider, Typography} from "@material-ui/core";
+import {Button, Divider, Grid, Typography} from "@material-ui/core";
 import RequiredInput from "./common/requiredInput";
 
 export interface TopicCreationFormProps {
@@ -30,13 +30,6 @@ class TopicCreationForm extends React.Component<TopicCreationFormProps,
             },
         };
     }
-
-    handleIdChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const topic: Topic = {...this.state.topic};
-        topic.Id = event.target.value;
-        this.setState({topic});
-        console.log(typeof event);
-    };
 
     handleNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         const topic: Topic = {...this.state.topic};
@@ -85,36 +78,37 @@ class TopicCreationForm extends React.Component<TopicCreationFormProps,
                 <Divider/>
                 <form noValidate autoComplete="off" onSubmit={this.doSubmit}>
                     <div className="m-2">
-                        <RequiredInput
-                            id="id"
-                            label="Topic ID"
-                            onChange={this.handleIdChanged}
-                        />
-                        <RequiredInput
-                            id="name"
-                            label="Name"
-                            onChange={this.handleNameChanged}
-                        />
-                        <RequiredInput
-                            id="number"
-                            label="Topic number"
-                            onChange={this.handleNumberChanged}
-                        />
-                        <RequiredInput
-                            id="time"
-                            label="Time to pass"
-                            onChange={this.handleTimeChanged}
-                        />
-                        <RequiredInput
-                            id="questionsCount"
-                            label="Questions per attempt"
-                            onChange={this.handleQuestionsChanged}
-                        />
-                        <RequiredInput
-                            id="maxAttempts"
-                            label="Max attempt count"
-                            onChange={this.handleAttemptsChanged}
-                        />
+                        <Grid container spacing={2}>
+                            <Grid item sm={12}><RequiredInput
+                                id="name"
+                                label="Name"
+                                onChange={this.handleNameChanged}
+                            /></Grid>
+                        </Grid>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}><RequiredInput
+                                id="number"
+                                label="Topic number"
+                                onChange={this.handleNumberChanged}
+                            /></Grid>
+                            <Grid item xs={12} sm={6}><RequiredInput
+                                id="time"
+                                label="Time to pass"
+                                onChange={this.handleTimeChanged}
+                            /></Grid>
+                        </Grid>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}><RequiredInput
+                                id="questionsCount"
+                                label="Questions per attempt"
+                                onChange={this.handleQuestionsChanged}
+                            /></Grid>
+                            <Grid item xs={12} sm={6}><RequiredInput
+                                id="maxAttempts"
+                                label="Max attempt count"
+                                onChange={this.handleAttemptsChanged}
+                            /></Grid>
+                        </Grid>
                         <Button
                             className="my-1"
                             type="submit"
