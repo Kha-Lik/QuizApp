@@ -17,8 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '100%',
-            height: 400,
-            maxWidth: 300,
             backgroundColor: theme.palette.background.paper,
         },
         search: {
@@ -85,7 +83,8 @@ export default function FilteredList(props: FilteredListProps) {
                               onClick={(event) =>
                                   handleListItemClick(event, item[`${idProperty}`])}>
                         <ListItemText
-                            primary={item[`${textProperty}`]+(secondaryTextProperty && " "+item[`${secondaryTextProperty}`])}/>
+                            primary={item[`${textProperty}`]}
+                            secondary={secondaryTextProperty ? item[`${secondaryTextProperty}`] : null}/>
                     </ListItem>)}
             </List>
         </div>

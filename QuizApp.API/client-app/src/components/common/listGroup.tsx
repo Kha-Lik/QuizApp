@@ -13,9 +13,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 export interface ListGroupProps {
     data: any[];
     contentProperty: string;
+    secondaryTextProperty?: string;
     idProperty: string;
-    createButton: boolean;
-    deleteButton: boolean;
+    createButton?: boolean;
+    deleteButton?: boolean;
     onDelete?: Function;
     onCreate?: Function;
     createButtonText?: string;
@@ -39,6 +40,7 @@ class ListGroup extends React.Component<ListGroupProps, ListGroupState> {
             onDelete,
             createButtonText,
             onSelectionChanged,
+            secondaryTextProperty
         } = this.props;
 
         return (
@@ -54,7 +56,10 @@ class ListGroup extends React.Component<ListGroupProps, ListGroupState> {
                         }}
                         selected={this.state.value === item[idProperty]}
                     >
-                        <ListItemText primary={item[contentProperty]}/>
+
+                        <ListItemText
+                            primary={item[`${contentProperty}`]}
+                            secondary={secondaryTextProperty ? item[`${secondaryTextProperty}`] : null}/>
                         {deleteButton &&
                         this.renderDeleteButton(onDelete, item[idProperty])}
                     </ListItem>
