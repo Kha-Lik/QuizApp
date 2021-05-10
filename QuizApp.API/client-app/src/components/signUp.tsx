@@ -118,7 +118,7 @@ export default function SignUp() {
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link component={RouterLink} to="/signin" className="body2">
+                            <Link component={RouterLink} to="/signIn" className="body2">
                                 Already have an account? Sign in
                             </Link>
                         </Grid>
