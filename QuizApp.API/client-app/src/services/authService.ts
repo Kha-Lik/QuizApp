@@ -1,7 +1,14 @@
 import jwtDecode from "jwt-decode";
 import http from "./httpService";
+import {JwtUser} from "../appTypes";
 
 const tokenKey = "token";
+const currentUser : JwtUser = {
+    Sub: "pustik@domain.com",
+    NameIdentifier: "def",
+    Role: "Student",
+    Jti: "string"
+}
 
 http.setJwt(getJwt());
 
@@ -19,12 +26,13 @@ export function logout() {
 }
 
 export function getCurrentUser() {
-    try {
+    /*try {
         const jwt = localStorage.getItem(tokenKey) as string;
         return jwtDecode(jwt);
     } catch (ex) {
         return null;
-    }
+    }*/
+    return currentUser;
 }
 
 export function getJwt() {

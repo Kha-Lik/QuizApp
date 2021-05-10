@@ -45,7 +45,7 @@ const topics: Topic[] = [
         TopicNumber: 1,
         TimeToPass: 10,
         QuestionsPerAttempt: 10,
-        MaxAttemptCount: 2
+        MaxAttemptCount: 1
     },
     {
         Id: "6",

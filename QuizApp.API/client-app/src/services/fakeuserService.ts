@@ -19,6 +19,12 @@ const users : User[] = [
         Surname: "Petrenko",
         Role: "Student",
     },
+    {
+        Id: "jkl",
+        Name: "Konstantyn",
+        Surname: "Melnyk",
+        Role: "Lecturer"
+    }
 ]
 
 function getStudents() : User[]{

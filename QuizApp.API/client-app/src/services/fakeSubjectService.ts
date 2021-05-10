@@ -14,27 +14,27 @@ const subjects: Subject[] = [
     },
     {
         Id: "3",
-        LecturerId: "2",
+        LecturerId: "abc",
         Name: "ТРПЗ"
     },
     {
         Id: "4",
-        LecturerId: "2",
+        LecturerId: "abc",
         Name: "Веб"
     },
     {
         Id: "5",
-        LecturerId: "2",
+        LecturerId: "abc",
         Name: "ООП"
     },
     {
         Id: "6",
-        LecturerId: "3",
+        LecturerId: "jkl",
         Name: "ОС"
     },
     {
         Id: "7",
-        LecturerId: "4",
+        LecturerId: "jkl",
         Name: "ПСРЧ"
     }
 ]

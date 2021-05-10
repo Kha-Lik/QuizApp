@@ -49,6 +49,13 @@ const questions: Question[] = [
         QuestionNumber: 1,
         QuestionText: "Question_7",
         Answers: []
+    },
+    {
+        Id: "8",
+        TopicId: "3",
+        QuestionNumber: 2,
+        QuestionText: "Question_8",
+        Answers: []
     }
 ]
 
