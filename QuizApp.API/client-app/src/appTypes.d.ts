@@ -19,7 +19,7 @@ export interface Question {
     TopicId: string,
     QuestionNumber: number,
     QuestionText: string,
-    Answers: Answer[]
+    Answers: Array<Answer>
 }
 
 export interface Answer {
@@ -58,4 +58,12 @@ export interface User {
     Name: string;
     Surname: string;
     Role: string;
+}
+
+export interface Test {
+    Student: User;
+    Topic: Topic;
+    DateTimePassed: Date;
+    Score: number;
+    Questions: Array<Question>;
 }

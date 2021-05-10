@@ -10,33 +10,56 @@ import auth from "./services/authService";
 import "bootstrap/dist/css/bootstrap.css";
 import "@fortawesome/fontawesome-free/css/all.css"
 import StudentTestResults from "./components/studentTestResults";
+import PersonalResults from "./components/personalResults";
+import TestSelection from "./components/testSelection";
+import TestView from "./components/testView";
+import {JwtUser, User} from "./appTypes";
 
-class App extends Component {
-    state = {user: null};
+interface AppState {
+    user: JwtUser;
+    student?: User;
+    topicId?: string;
+}
 
-    componentDidMount() {
-        const user = true; //auth.getCurrentUser();
-        this.setState({user});
+export interface AppProps {}
+
+class App extends Component<AppProps, AppState> {
+    state : AppState;
+
+    constructor(props: AppProps) {
+        super(props);
+        this.state = {user: auth.getCurrentUser(), student: undefined, topicId: undefined}
     }
 
+    onTestConfirmation = (student: User, topicId: string) => {
+        this.setState({student, topicId});
+    };
+
     render() {
-        const {user} = this.state;
+        const {user, student, topicId} = this.state;
 
         return (
             <BrowserRouter>
                 <Fragment>
                     <CssBaseline/>
-                    {user && <NavBar/>}
+                    {user && <NavBar user={user}/>}
                     <Container>
-                        <Fragment><Switch>
-                            <Route path="/signin" component={SignIn}/>
-                            <Route path="/signup" component={SignUp}/>
+                        <Switch>
+                            <Route path="/signIn" component={SignIn}/>
+                            <Route path="/signUp" component={SignUp}/>
                             <Route path="/not-found" component={NotFound}/>
-                            <Route path="/subjectTopicTable" component={SubjectTopicTable}/>
-                            <Route path="/studentTestResults" component={StudentTestResults}/>
+                            <Route path="/testCreation" component={SubjectTopicTable}/>
+                            <Route path="/studentsResults" component={StudentTestResults}/>
+                            <Route path="/results" component={PersonalResults}/>
+                            <Route path="/tests"
+                                   render={(props) =>
+                                       <TestSelection {...props} onTestConfirmation={this.onTestConfirmation}/>}/>
+                            <Route path="/test"
+                                   render={(props) =>
+                                       <TestView {...props} student={student as User} topicId={topicId as string}/>}/>
                             <Redirect from="/" to="/not-found"/>
                             <Redirect to="/not-found"/>
-                        </Switch></Fragment>
+                        </Switch>
                     </Container>
                 </Fragment>
             </BrowserRouter>
