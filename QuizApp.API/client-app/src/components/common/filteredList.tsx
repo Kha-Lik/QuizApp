@@ -79,7 +79,7 @@ export default function FilteredList(props: FilteredListProps) {
                         primary="Скинути вибір"/>
                 </ListItem>
                 {data.map(item =>
-                    <ListItem button selected={selectedIndex === item[`${idProperty}`]}
+                    <ListItem key={item[`${idProperty}`]} button selected={selectedIndex === item[`${idProperty}`]}
                               onClick={(event) =>
                                   handleListItemClick(event, item[`${idProperty}`])}>
                         <ListItemText
