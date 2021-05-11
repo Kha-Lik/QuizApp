@@ -10,14 +10,22 @@ export interface TestViewProps {
 
 interface TestViewState {
     test: Test;
+    time: {h: number, m: number, s: number};
+    seconds: number;
 }
 
 class TestView extends Component<TestViewProps, TestViewState> {
     state: TestViewState;
+    timer: NodeJS.Timeout | undefined = undefined;
 
     constructor(props: TestViewProps) {
         super(props);
-        this.state = {test: testService.generateTestForTopic(props.student, props.topicId)}
+        const test = testService.generateTestForTopic(props.student, props.topicId);
+        this.state = {
+            test,
+            seconds: 0,
+            time: {h: 0, m: 0, s: 0}
+        }
     }
 
     renderQuestion(question: Question): JSX.Element {
@@ -29,7 +37,7 @@ class TestView extends Component<TestViewProps, TestViewState> {
                 <Grid item sm={12} className={"mx-2"}>
                     <Typography>{question.QuestionNumber + ". " + question.QuestionText}</Typography>
                 </Grid>
-                <Grid container xs={12} spacing={1} className="m-2">
+                <Grid container spacing={1} className="m-2">
                     {question.Answers.map(a => this.renderAnswer(a))}
                     <Grid item sm={12}>
                         <Divider variant={"middle"}/>
@@ -67,27 +75,71 @@ class TestView extends Component<TestViewProps, TestViewState> {
         this.setState({test});
     }
 
-    handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    doSubmit = (event?: React.MouseEvent<HTMLButtonElement>) => {
         const test = {...this.state.test};
         test.DateTimePassed = new Date(Date.now());
         console.log(test);
     }
 
+    countEmptyQuestions() : number{
+        return this.state.test.Questions.filter(q => q.Answers.filter(a => a.IsCorrect).length === 0).length;
+    }
+
+    secondsToTime(secs: number){
+        const hours = Math.floor(secs / (60 * 60));
+
+        const divisor_for_minutes = secs % (60 * 60);
+        const minutes = Math.floor(divisor_for_minutes / 60);
+
+        const divisor_for_seconds = divisor_for_minutes % 60;
+        const seconds = Math.ceil(divisor_for_seconds);
+
+        const time = {
+            h: hours,
+            m: minutes,
+            s: seconds
+        };
+        return time;
+    }
+
+    componentDidMount() {
+        const seconds = this.state.test.Topic.TimeToPass*60;
+        const timeLeft = this.secondsToTime(seconds);
+        this.timer = setInterval(this.countDown, 1000);
+        this.setState({ time: timeLeft, seconds });
+    }
+
+    countDown = () => {
+        const seconds = this.state.seconds - 1;
+        this.setState({
+            time: this.secondsToTime(seconds),
+            seconds: seconds,
+        });
+
+        if (seconds === 0) {
+            clearInterval(this.timer as NodeJS.Timeout);
+            this.doSubmit();
+        }
+    }
+
     render() {
-        const {test} = this.state;
+        const {test, time} = this.state;
+        const emptyQuestions = this.countEmptyQuestions();
+
         return (
-            <Grid container xs={12}>
+            <Grid container>
                 <Grid item xs={3}>
                     <Paper variant={"outlined"} elevation={3} className={"m-2"}>
                         <Typography variant={"h6"} className={"m-2"}>{test.Topic.Name}</Typography>
                         <Typography
-                            className={"m-2"}>{"Залишилося питань: " + test.Topic.QuestionsPerAttempt}</Typography>
+                            className={"m-2"}>{"Залишилося питань: " + emptyQuestions}</Typography>
                         <Typography
-                            className={"m-2"}>{"Залишилося часу: " + test.Topic.TimeToPass + " хв."}</Typography>
+                            className={"m-2"}>{"Залишилося часу: " + time.h + ":" + time.m + ":" + time.s}</Typography>
                         <div className="container my-2" style={{width: "max-content", alignContent: "center"}}>
                             <Button variant="contained"
                                     color="primary"
-                                    onClick={(event) => this.handleSubmit(event)}
+                                    disabled={emptyQuestions !== 0 || this.state.seconds === 0}
+                                    onClick={(event) => this.doSubmit(event)}
                             >
                                 <Typography>Завершити тест</Typography>
                             </Button>
@@ -96,7 +148,7 @@ class TestView extends Component<TestViewProps, TestViewState> {
                 </Grid>
                 <Grid item xs={9}>
                     <Paper variant="outlined" elevation={3} className="m-2">
-                        <Grid container spacing={1} sm={12}>
+                        <Grid container spacing={1} >
                             {test.Questions.map(q => this.renderQuestion(q))}
                             <Grid item sm={12}>
                                 <Divider color="primary"/>
