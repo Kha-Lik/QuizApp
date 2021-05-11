@@ -1,4 +1,5 @@
 import {Question} from '../appTypes';
+import AnswerModel from '../models/answer';
 
 const questions: Question[] = [
     {
@@ -20,7 +21,11 @@ const questions: Question[] = [
         TopicId: "3",
         QuestionNumber: 1,
         QuestionText: "Question_3",
-        Answers: []
+        Answers: [
+            new AnswerModel("ans_1", "1", true, "3"),
+            new AnswerModel("ans_2", "2", false, "3"),
+            new AnswerModel("ans_3", "3", false, "3"),
+        ]
     },
     {
         Id: "4",
@@ -55,7 +60,14 @@ const questions: Question[] = [
         TopicId: "3",
         QuestionNumber: 2,
         QuestionText: "Question_8",
-        Answers: []
+        Answers: [
+            new AnswerModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
+                " incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco " +
+                "laboris nisi ut aliquip ex ea commodo consequat.",
+                "4", false, "8"),
+            new AnswerModel("ans_5", "5", true, "8"),
+            new AnswerModel("ans_6", "6", false, "8"),
+        ]
     }
 ]
 
