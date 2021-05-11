@@ -1,9 +1,8 @@
-import jwtDecode from "jwt-decode";
 import http from "./httpService";
 import {JwtUser} from "../appTypes";
 
 const tokenKey = "token";
-const currentUser : JwtUser = {
+const currentUser: JwtUser = {
     Sub: "pustik@domain.com",
     NameIdentifier: "def",
     Role: "Student",

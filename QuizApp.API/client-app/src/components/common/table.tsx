@@ -11,10 +11,10 @@ export interface TableProps {
     idProperty: string;
 }
 
-const Table = ({ columns, sortColumn, onSort, data, idProperty }: TableProps) => {
+const Table = ({columns, sortColumn, onSort, data, idProperty}: TableProps) => {
     return (
         <table className="table">
-            <TableHeader columns={columns} sortColumn={sortColumn} onSort={onSort} />
+            <TableHeader columns={columns} sortColumn={sortColumn} onSort={onSort}/>
             <TableBody columns={columns} data={data} idProperty={idProperty}/>
         </table>
     );

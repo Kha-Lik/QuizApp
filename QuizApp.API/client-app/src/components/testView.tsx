@@ -10,7 +10,7 @@ export interface TestViewProps {
 
 interface TestViewState {
     test: Test;
-    time: {h: number, m: number, s: number};
+    time: { h: number, m: number, s: number };
     seconds: number;
 }
 
@@ -54,7 +54,8 @@ class TestView extends Component<TestViewProps, TestViewState> {
                     <Divider variant={"middle"}/>
                 </Grid>
                 <Grid item sm={1} className={"ml-1"} style={{alignContent: "center", display: "flex"}}>
-                    <Checkbox checked={answer.IsCorrect} onClick={(event) => this.handleCheckboxClicked(event, answer)}/>
+                    <Checkbox checked={answer.IsCorrect}
+                              onClick={(event) => this.handleCheckboxClicked(event, answer)}/>
                 </Grid>
                 <Grid item sm={10} className={"mr-1"}>
                     <Typography>{answer.AnswerText}</Typography>
@@ -81,11 +82,11 @@ class TestView extends Component<TestViewProps, TestViewState> {
         console.log(test);
     }
 
-    countEmptyQuestions() : number{
+    countEmptyQuestions(): number {
         return this.state.test.Questions.filter(q => q.Answers.filter(a => a.IsCorrect).length === 0).length;
     }
 
-    secondsToTime(secs: number){
+    secondsToTime(secs: number) {
         const hours = Math.floor(secs / (60 * 60));
 
         const divisor_for_minutes = secs % (60 * 60);
@@ -103,10 +104,10 @@ class TestView extends Component<TestViewProps, TestViewState> {
     }
 
     componentDidMount() {
-        const seconds = this.state.test.Topic.TimeToPass*60;
+        const seconds = this.state.test.Topic.TimeToPass * 60;
         const timeLeft = this.secondsToTime(seconds);
         this.timer = setInterval(this.countDown, 1000);
-        this.setState({ time: timeLeft, seconds });
+        this.setState({time: timeLeft, seconds});
     }
 
     countDown = () => {
@@ -148,7 +149,7 @@ class TestView extends Component<TestViewProps, TestViewState> {
                 </Grid>
                 <Grid item xs={9}>
                     <Paper variant="outlined" elevation={3} className="m-2">
-                        <Grid container spacing={1} >
+                        <Grid container spacing={1}>
                             {test.Questions.map(q => this.renderQuestion(q))}
                             <Grid item sm={12}>
                                 <Divider color="primary"/>

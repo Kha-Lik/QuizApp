@@ -1,5 +1,5 @@
 import React from "react";
-import {makeStyles, Theme, createStyles} from "@material-ui/core/styles";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {Backdrop, Fade, Modal, Paper} from "@material-ui/core";
 import TopicCreationForm from "./topicCreationForm";
 

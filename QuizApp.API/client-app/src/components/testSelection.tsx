@@ -21,12 +21,12 @@ interface TestSelectionState {
     selectedTopicId: string;
     testConfirmationModalOpen: boolean;
     student: User
-};
+}
 
 class TestSelection extends Component<TestSelectionProps, TestSelectionState> {
-    state : TestSelectionState
+    state: TestSelectionState
 
-    constructor(props : TestSelectionProps) {
+    constructor(props: TestSelectionProps) {
         super(props);
         const student = userService.getStudentById(auth.getCurrentUser().NameIdentifier) as User;
         this.state = {
@@ -46,9 +46,9 @@ class TestSelection extends Component<TestSelectionProps, TestSelectionState> {
         this.setState({lecturers});
     }
 
-    handleLecturerSelectionChanged = (id : string) => {
+    handleLecturerSelectionChanged = (id: string) => {
         const subjects = subjectService.getSubjectsByLecturerId(id);
-        const topics : Topic[] = [];
+        const topics: Topic[] = [];
         const selectedTopicId = "";
         this.setState({subjects, topics, selectedLecturerId: id, selectedTopicId});
     }
@@ -146,7 +146,7 @@ class TestSelection extends Component<TestSelectionProps, TestSelectionState> {
                     openState={this.state.testConfirmationModalOpen}
                     doClose={this.handleTestConfirmationModalClose}
                     student={student}
-                    topic={topics.filter((t : Topic) => t.Id === selectedTopicId)[0]}
+                    topic={topics.filter((t: Topic) => t.Id === selectedTopicId)[0]}
                     onTestConfirmation={this.doTestConfirmation}
                 />
             </Paper>

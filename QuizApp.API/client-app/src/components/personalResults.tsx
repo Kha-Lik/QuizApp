@@ -1,8 +1,7 @@
 import React, {ChangeEvent, Component} from 'react';
 import {Paper} from '@material-ui/core';
 import FilteredList from "./common/filteredList";
-import {AttemptViewModel, Subject, User} from '../appTypes';
-import userService from "../services/fakeuserService";
+import {AttemptViewModel, Subject} from '../appTypes';
 import Table from "./common/table";
 import {Column, SortColumn} from "./common/commonTypes";
 import attemptService from "../services/fakeAttemptService";
@@ -13,9 +12,9 @@ import subjectService from "../services/fakeSubjectService";
 export interface PersonalResultsState {
     subjects: Subject[];
     filteredSubjects: Subject[];
-    attempts : AttemptViewModel[];
-    filteredAttempts : Array<AttemptViewModel>;
-    columns : Array<Column>;
+    attempts: AttemptViewModel[];
+    filteredAttempts: Array<AttemptViewModel>;
+    columns: Array<Column>;
     sortColumn: SortColumn;
 }
 
@@ -29,7 +28,7 @@ class PersonalResults extends Component<PersonalResultsProps, PersonalResultsSta
         super(props);
         const subjects = subjectService.getAllSubjects();
         const attempts = attemptService.getAttemptsByStudentId(auth.getCurrentUser().NameIdentifier);
-        const columns : Column[]= [
+        const columns: Column[] = [
             {
                 path: "SubjectName",
                 label: "Предмет"
@@ -47,12 +46,12 @@ class PersonalResults extends Component<PersonalResultsProps, PersonalResultsSta
                 label: "Дата проходження"
             }
         ];
-        const sortColumn : SortColumn = {path: "SubjectName", order: "asc"};
+        const sortColumn: SortColumn = {path: "SubjectName", order: "asc"};
         this.state = {
             subjects,
-            filteredSubjects : [...subjects],
+            filteredSubjects: [...subjects],
             attempts,
-            filteredAttempts : [...attempts],
+            filteredAttempts: [...attempts],
             columns,
             sortColumn
         };
@@ -73,7 +72,8 @@ class PersonalResults extends Component<PersonalResultsProps, PersonalResultsSta
                         />
                     </div>
                     <div className="col-auto m-2">
-                        <Table columns={columns} sortColumn={sortColumn} onSort={this.handleSort} data={filteredAttempts} idProperty="Id"/>
+                        <Table columns={columns} sortColumn={sortColumn} onSort={this.handleSort}
+                               data={filteredAttempts} idProperty="Id"/>
                     </div>
                 </div>
             </Paper>
@@ -86,23 +86,24 @@ class PersonalResults extends Component<PersonalResultsProps, PersonalResultsSta
         this.setState({filteredSubjects})
     };
 
-    handleSelectionChanged = (id : string) => {
-        if (!(id === "noFilter")){
+    handleSelectionChanged = (id: string) => {
+        if (!(id === "noFilter")) {
             const selectedSubject = this.state.filteredSubjects.filter(u => u.Id === id)[0];
             const filteredAttempts = this.state.attempts.filter(
                 a => a.SubjectName.includes(selectedSubject.Name)
             );
             this.setState({filteredAttempts});
-        }else {
+        } else {
             const filteredAttempts = [...this.state.attempts];
-            this.setState({filteredAttempts});}
+            this.setState({filteredAttempts});
+        }
     }
 
-    handleSort = (sortColumn : SortColumn) => {
-        this.setState({ sortColumn });
+    handleSort = (sortColumn: SortColumn) => {
+        this.setState({sortColumn});
         const attempts = [...this.state.filteredAttempts];
         const sorted = _.orderBy(attempts, [sortColumn.path], [sortColumn.order]);
-        this.setState({filteredAttempts : sorted});
+        this.setState({filteredAttempts: sorted});
     };
 }
 

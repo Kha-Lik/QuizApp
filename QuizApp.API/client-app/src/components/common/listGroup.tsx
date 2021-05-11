@@ -1,12 +1,5 @@
 import React from "react";
-import {
-    Button,
-    IconButton,
-    List,
-    ListItem,
-    ListItemSecondaryAction,
-    ListItemText,
-} from "@material-ui/core";
+import {Button, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText,} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 

@@ -1,6 +1,6 @@
 import {Answer} from "../appTypes";
 
-export default class AnswerModel implements Answer{
+export default class AnswerModel implements Answer {
     AnswerText: string;
     Id: string;
     IsCorrect: boolean;

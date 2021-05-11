@@ -1,13 +1,6 @@
 import React, {Fragment} from "react";
 import {Question} from "../appTypes";
-import {
-    Button,
-    Checkbox,
-    Divider,
-    Grid,
-    Paper,
-    Typography,
-} from "@material-ui/core";
+import {Button, Checkbox, Divider, Grid, Paper, Typography,} from "@material-ui/core";
 import RequiredInput from "./common/requiredInput";
 
 export interface QuestionCreationFormProps {

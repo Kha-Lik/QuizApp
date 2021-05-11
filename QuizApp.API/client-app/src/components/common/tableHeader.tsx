@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {Column, SortColumn} from "./commonTypes";
 
 export interface TableHeaderProps {
@@ -8,8 +8,8 @@ export interface TableHeaderProps {
 }
 
 class TableHeader extends Component<TableHeaderProps> {
-    raiseSort = (path : string) => {
-        const sortColumn = { ...this.props.sortColumn };
+    raiseSort = (path: string) => {
+        const sortColumn = {...this.props.sortColumn};
         if (sortColumn.path === path)
             sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
         else {
@@ -20,11 +20,11 @@ class TableHeader extends Component<TableHeaderProps> {
     };
 
     renderSortIcon = (column: Column) => {
-        const { sortColumn } = this.props;
+        const {sortColumn} = this.props;
 
         if (column.path !== sortColumn.path) return null;
-        if (sortColumn.order === "asc") return <i className="fa fa-sort-up" />;
-        return <i className="fa fa-sort-down" />;
+        if (sortColumn.order === "asc") return <i className="fa fa-sort-up"/>;
+        return <i className="fa fa-sort-down"/>;
     };
 
     render() {

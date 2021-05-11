@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {AppBar, Button, createStyles, makeStyles, Theme, Toolbar, Typography} from "@material-ui/core";
-import { Link as RouterLink} from "react-router-dom";
+import {Link as RouterLink} from "react-router-dom";
 import {grey, teal} from "@material-ui/core/colors"
 import {JwtUser} from "../appTypes";
 
@@ -61,7 +61,7 @@ function NavBar({user}: NavBarProps) {
     const renderLecturerMenu = () => (
         <Fragment>
             <Button
-                onClick = {(event : React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleClick(event,1)}
+                onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleClick(event, 1)}
                 component={RouterLink}
                 to="/testCreation"
             >
@@ -70,7 +70,7 @@ function NavBar({user}: NavBarProps) {
                 </Typography>
             </Button>
             <Button
-                onClick = {(event : React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleClick(event,2)}
+                onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleClick(event, 2)}
                 component={RouterLink}
                 to="/studentsResults"
             >
@@ -84,7 +84,7 @@ function NavBar({user}: NavBarProps) {
     const renderStudentMenu = () => (
         <Fragment>
             <Button
-                onClick = {(event : React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleClick(event,3)}
+                onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleClick(event, 3)}
                 component={RouterLink}
                 to="/tests"
             >
@@ -93,7 +93,7 @@ function NavBar({user}: NavBarProps) {
                 </Typography>
             </Button>
             <Button
-                onClick = {(event : React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleClick(event,4)}
+                onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => handleClick(event, 4)}
                 component={RouterLink}
                 to="/results"
             >

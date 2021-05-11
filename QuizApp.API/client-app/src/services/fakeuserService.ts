@@ -1,6 +1,6 @@
-import { User } from "../appTypes";
+import {User} from "../appTypes";
 
-const users : User[] = [
+const users: User[] = [
     {
         Id: "abc",
         Name: "Kolia",
@@ -27,18 +27,19 @@ const users : User[] = [
     }
 ]
 
-function getStudents() : User[]{
+function getStudents(): User[] {
     return users.filter(u => u.Role === "Student");
 }
 
-function getLecturers() : User[]{
+function getLecturers(): User[] {
     return users.filter(u => u.Role === "Lecturer");
 }
 
-function getStudentById(id : string) : User | undefined{
+function getStudentById(id: string): User | undefined {
     return users.filter(u => u.Role === "Student").find(u => u.Id === id);
 }
-function getLecturerById(id : string) : User | undefined{
+
+function getLecturerById(id: string): User | undefined {
     return users.filter(u => u.Role === "Lecturer").find(u => u.Id === id);
 }
 

@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from "react";
-import {BrowserRouter, Route, Redirect, Switch} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {Container, CssBaseline} from "@material-ui/core";
 import NavBar from "./components/navBar";
 import SignIn from "./components/signIn";
@@ -21,10 +21,11 @@ interface AppState {
     topicId?: string;
 }
 
-export interface AppProps {}
+export interface AppProps {
+}
 
 class App extends Component<AppProps, AppState> {
-    state : AppState;
+    state: AppState;
 
     constructor(props: AppProps) {
         super(props);

@@ -3,7 +3,7 @@ import userService from "./fakeuserService";
 import topicService from "./fakeTopicService";
 import subjectService from "./fakeSubjectService";
 
-const attempts : Attempt[] = [
+const attempts: Attempt[] = [
     {
         Id: "a",
         StudentId: "def",
@@ -48,16 +48,16 @@ const attempts : Attempt[] = [
     },
 ]
 
-function getAllAttempts() : AttemptViewModel[]{
+function getAllAttempts(): AttemptViewModel[] {
     return attempts.map(a => mapToViewModel(a));
 }
 
-function getAttemptsByStudentId(id : string) : AttemptViewModel[]{
+function getAttemptsByStudentId(id: string): AttemptViewModel[] {
     return attempts.filter(a => a.StudentId === id).map(a => mapToViewModel(a));
 }
 
-function mapToViewModel(attempt : Attempt) : AttemptViewModel{
-    const attemptVM : AttemptViewModel = {} as AttemptViewModel;
+function mapToViewModel(attempt: Attempt): AttemptViewModel {
+    const attemptVM: AttemptViewModel = {} as AttemptViewModel;
     const student = userService.getStudentById(attempt.StudentId);
     const topic = topicService.getTopicById(attempt.TopicId);
 

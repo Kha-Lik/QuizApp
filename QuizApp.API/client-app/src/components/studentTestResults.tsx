@@ -11,9 +11,9 @@ import _ from "lodash";
 export interface StudentTestResultsState {
     students: User[];
     filteredStudents: User[];
-    attempts : AttemptViewModel[];
-    filteredAttempts : Array<AttemptViewModel>;
-    columns : Array<Column>;
+    attempts: AttemptViewModel[];
+    filteredAttempts: Array<AttemptViewModel>;
+    columns: Array<Column>;
     sortColumn: SortColumn;
 }
 
@@ -27,7 +27,7 @@ class StudentTestResults extends Component<StudentTestResultsProps, StudentTestR
         super(props);
         const students = userService.getStudents();
         const attempts = attemptService.getAllAttempts();
-        const columns : Column[]= [
+        const columns: Column[] = [
             {
                 path: "StudentName",
                 label: "Студент"
@@ -49,12 +49,12 @@ class StudentTestResults extends Component<StudentTestResultsProps, StudentTestR
                 label: "Дата проходження"
             }
         ];
-        const sortColumn : SortColumn = {path: "StudentName", order: "asc"};
+        const sortColumn: SortColumn = {path: "StudentName", order: "asc"};
         this.state = {
             students,
             filteredStudents: [...students],
             attempts,
-            filteredAttempts : [...attempts],
+            filteredAttempts: [...attempts],
             columns,
             sortColumn
         };
@@ -76,7 +76,8 @@ class StudentTestResults extends Component<StudentTestResultsProps, StudentTestR
                         />
                     </div>
                     <div className="col-auto m-2">
-                        <Table columns={columns} sortColumn={sortColumn} onSort={this.handleSort} data={filteredAttempts} idProperty="Id"/>
+                        <Table columns={columns} sortColumn={sortColumn} onSort={this.handleSort}
+                               data={filteredAttempts} idProperty="Id"/>
                     </div>
                 </div>
             </Paper>
@@ -89,24 +90,25 @@ class StudentTestResults extends Component<StudentTestResultsProps, StudentTestR
         this.setState({filteredStudents})
     };
 
-    handleSelectionChanged = (id : string) => {
-        if (!(id === "noFilter")){
-        const selectedStudent = this.state.filteredStudents.filter(u => u.Id === id)[0];
-        const filteredAttempts = this.state.attempts.filter(
-            a => a.StudentName.includes(selectedStudent.Name)
-            && a.StudentName.includes(selectedStudent.Surname)
-        );
+    handleSelectionChanged = (id: string) => {
+        if (!(id === "noFilter")) {
+            const selectedStudent = this.state.filteredStudents.filter(u => u.Id === id)[0];
+            const filteredAttempts = this.state.attempts.filter(
+                a => a.StudentName.includes(selectedStudent.Name)
+                    && a.StudentName.includes(selectedStudent.Surname)
+            );
             this.setState({filteredAttempts});
-        }else {
-        const filteredAttempts = [...this.state.attempts];
-            this.setState({filteredAttempts});}
+        } else {
+            const filteredAttempts = [...this.state.attempts];
+            this.setState({filteredAttempts});
+        }
     }
 
-    handleSort = (sortColumn : SortColumn) => {
-        this.setState({ sortColumn });
+    handleSort = (sortColumn: SortColumn) => {
+        this.setState({sortColumn});
         const attempts = [...this.state.filteredAttempts];
         const sorted = _.orderBy(attempts, [sortColumn.path], [sortColumn.order]);
-        this.setState({filteredAttempts : sorted});
+        this.setState({filteredAttempts: sorted});
     };
 }
 

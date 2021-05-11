@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link as RouterLink} from "react-router-dom";
 import {Topic, User} from "../appTypes";
 import {Button, createStyles, Grid, makeStyles, TextField, Theme, Typography} from "@material-ui/core";
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 function TestConfirmation({topic, student, onTestConfirmation}: TestConfirmationProps) {
     const {title} = useStyles();
     const attempts = countAttempts(student, topic);
-    
+
     return (
         <div className="m-2">
             <Typography variant="h4" className={`${title} my-2`}>{topic.Name}</Typography>
@@ -60,7 +60,7 @@ function TestConfirmation({topic, student, onTestConfirmation}: TestConfirmation
                         color="primary"
                         disabled={attempts === 0}
                         component={RouterLink}
-                        onClick={(event:React.MouseEvent<HTMLAnchorElement, MouseEvent>) => onTestConfirmation(event)}
+                        onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => onTestConfirmation(event)}
                         to="/test"
                 >
                     <Typography>Підтвердити</Typography>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {fade, createStyles, makeStyles, Theme} from '@material-ui/core/styles';
+import {createStyles, fade, makeStyles, Theme} from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {InputBase, List} from '@material-ui/core';
@@ -68,12 +68,12 @@ export default function FilteredList(props: FilteredListProps) {
                             root: classes.inputRoot,
                             input: classes.inputInput,
                         }}
-                        inputProps={{ 'aria-label': 'search' }}
+                        inputProps={{'aria-label': 'search'}}
                         onChange={(event) => onFilterChanged(event)}
                     />
                 </div>
                 <ListItem button onClick={(event) =>
-                              handleListItemClick(event, "noFilter")}>
+                    handleListItemClick(event, "noFilter")}>
                     <ListItemText
                         className="btn btn-secondary"
                         primary="Скинути вибір"/>

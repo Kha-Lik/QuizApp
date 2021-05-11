@@ -47,7 +47,7 @@ function getSubjectsByLecturerId(id: string): Subject[] {
     return subjects.filter(s => s.LecturerId === id);
 }
 
-function getSubjectById(id : string) : Subject | undefined{
+function getSubjectById(id: string): Subject | undefined {
     return subjects.find(s => s.Id === id);
 }
 

@@ -4,7 +4,8 @@ export interface Column {
     content?: Function;
     key?: string;
 }
-export interface SortColumn{
+
+export interface SortColumn {
     path: string;
     order: boolean | "asc" | "desc";
 }

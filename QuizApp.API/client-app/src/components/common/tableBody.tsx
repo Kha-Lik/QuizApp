@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import _ from "lodash";
 import {Column} from "./commonTypes";
 
@@ -8,21 +8,22 @@ export interface TableBodyProps {
     idProperty: string;
 }
 
-export interface TableBodyState {}
+export interface TableBodyState {
+}
 
 class TableBody extends Component<TableBodyProps, TableBodyState> {
-    renderCell = (item : any, column : Column) => {
+    renderCell = (item: any, column: Column) => {
         if (column.content) return column.content(item);
 
         return _.get(item, column.path);
     };
 
-    createKey = (item : any, column : Column) => {
+    createKey = (item: any, column: Column) => {
         return _.get(item, this.props.idProperty) + (column.path || column.key);
     };
 
     render() {
-        const { data, columns, idProperty } = this.props;
+        const {data, columns, idProperty} = this.props;
         return (
             <tbody>
             {data.map(item => (

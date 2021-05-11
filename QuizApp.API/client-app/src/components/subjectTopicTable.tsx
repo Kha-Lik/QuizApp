@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Divider, Paper, Typography} from "@material-ui/core";
-import {Subject, Topic, Question} from "../appTypes";
+import {Question, Subject, Topic} from "../appTypes";
 import ListGroup from "./common/listGroup";
 import subjectService from "../services/fakeSubjectService";
 import topicService from "../services/fakeTopicService";

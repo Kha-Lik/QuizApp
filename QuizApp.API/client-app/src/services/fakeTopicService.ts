@@ -75,7 +75,7 @@ function getTopicsBySubjectId(id: string): Topic[] {
     return topics.filter(t => t.SubjectId === id);
 }
 
-function getTopicById(id : string) :Topic | undefined{
+function getTopicById(id: string): Topic | undefined {
     return topics.find(t => t.Id === id);
 }
 
