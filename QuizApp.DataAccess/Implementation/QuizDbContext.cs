@@ -10,7 +10,7 @@ namespace QuizApp.DataAccess.Implementation
         {
             base.Database.EnsureCreated();
         }
-        
+
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Question> Questions { get; set; }
@@ -18,3 +18,4 @@ namespace QuizApp.DataAccess.Implementation
         public DbSet<Attempt> Attempts { get; set; }
         public DbSet<QuestionResult> QuestionResults { get; set; }
     }
+}

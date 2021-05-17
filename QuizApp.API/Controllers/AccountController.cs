@@ -65,8 +65,8 @@ namespace QuizApp.API.Controllers
             }
         }
 
-        [HttpPost("Sign Out")]
-        public async Task<ActionResult> SignOut()
+        [HttpPost("Logout")]
+        public async Task<ActionResult> Logout()
         {
             await _userService.SignOut();
             return Ok();
