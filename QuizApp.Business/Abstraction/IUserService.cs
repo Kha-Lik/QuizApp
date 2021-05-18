@@ -19,5 +19,8 @@ namespace QuizApp.Business.Abstraction
 
         IAsyncEnumerable<IdentityRole> GetRolesAsync();
 
+        IAsyncEnumerable<UserDto> GetUsersByRole(string role);
+        Task<UserDto> GetUserByIdAndRole(string id, string role);
+
     }
 }

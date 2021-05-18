@@ -85,6 +85,18 @@ namespace QuizApp.Business.Implementation.Services
             return _roleManager.Roles.ToAsyncEnumerable();
         }
 
+        public IAsyncEnumerable<UserDto> GetUsersByRole(string role)
+        {
+            return _quizDbContext.Users.AsQueryable().Where(a => a.Role.Equals(role))
+                .Select(UserMapper.ProjectToDto).AsAsyncEnumerable();
+        }
+
+        public Task<UserDto> GetUserByIdAndRole(string id, string role)
+        {
+            return _quizDbContext.Users.AsQueryable().Where(a => a.Role.Equals(role))
+                .Select(UserMapper.ProjectToDto).FirstOrDefaultAsync(u => u.Id.Equals(id));
+        }
+
         private object GenerateJwtToken(string email, User user)
         {
             var claims = new List<Claim>
