@@ -61,7 +61,14 @@ namespace QuizApp.API.Controllers
         [HttpPut("Answer")]
         public async Task<ActionResult> Update(AnswerDto answerDto)
         {
-            await _answerService.UpdateEntity(answerDto);
+            try
+            {
+                await _answerService.UpdateEntity(answerDto);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return Ok();
         }
