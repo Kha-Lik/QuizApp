@@ -14,6 +14,7 @@ import PersonalResults from "./components/personalResults";
 import TestSelection from "./components/testSelection";
 import TestView from "./components/testView";
 import {JwtUser, User} from "./appTypes";
+import ProtectedRoute from "./components/common/protectedRoute";
 
 interface AppState {
     user: JwtUser;
@@ -49,13 +50,13 @@ class App extends Component<AppProps, AppState> {
                             <Route path="/signIn" component={SignIn}/>
                             <Route path="/signUp" component={SignUp}/>
                             <Route path="/not-found" component={NotFound}/>
-                            <Route path="/testCreation" component={SubjectTopicTable}/>
-                            <Route path="/studentsResults" component={StudentTestResults}/>
-                            <Route path="/results" component={PersonalResults}/>
-                            <Route path="/tests"
+                            <ProtectedRoute path="/testCreation" component={SubjectTopicTable} role={"Lecturer"}/>
+                            <ProtectedRoute path="/studentsResults" component={StudentTestResults} role={"Lecturer"}/>
+                            <ProtectedRoute path="/results" component={PersonalResults} role={"Student"}/>
+                            <ProtectedRoute path="/tests" role={"student"}
                                    render={(props) =>
                                        <TestSelection {...props} onTestConfirmation={this.onTestConfirmation}/>}/>
-                            <Route path="/test"
+                            <ProtectedRoute path="/test" role={"Student"}
                                    render={(props) =>
                                        <TestView {...props} student={student as User} topicId={topicId as string}/>}/>
                             <Redirect from="/" to="/not-found"/>
