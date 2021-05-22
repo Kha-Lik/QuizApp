@@ -2,9 +2,10 @@
 {
     public class QuestionResult : BaseEntity
     {
-        public int AttemptId { get; set; }
-        public int QuestionId { get; set; }
+        public string AttemptId { get; set; }
+        public string QuestionId { get; set; }
         public bool Result { get; set; }
+        
         public Attempt Attempt { get; set; }
         public Question Question { get; set; }
     }

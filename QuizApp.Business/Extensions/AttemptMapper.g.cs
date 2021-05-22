@@ -1,8 +1,7 @@
 using System;
-using System.Linq;
 using System.Linq.Expressions;
-using QuizApp.DataAccess.Entities;
 using QuizApp.Business.Models;
+using QuizApp.DataAccess.Entities;
 
 namespace QuizApp.Business.Extensions
 {
@@ -16,129 +15,67 @@ namespace QuizApp.Business.Extensions
                 TopicId = p1.TopicId,
                 Score = p1.Score,
                 DateTime = p1.DateTime,
-                QuestionResults = p1.QuestionResults == null ? null : p1.QuestionResults.Select<QuestionResultDto, QuestionResult>(funcMain1),
                 Id = p1.Id
             };
         }
-        public static Attempt AdaptTo(this AttemptDto p3, Attempt p4)
+        public static Attempt AdaptTo(this AttemptDto p2, Attempt p3)
         {
-            if (p3 == null)
+            if (p2 == null)
             {
                 return null;
             }
-            Attempt result = p4 ?? new Attempt();
+            Attempt result = p3 ?? new Attempt();
             
-            result.StudentId = p3.StudentId;
-            result.TopicId = p3.TopicId;
-            result.Score = p3.Score;
-            result.DateTime = p3.DateTime;
-            result.QuestionResults = p3.QuestionResults == null ? null : p3.QuestionResults.Select<QuestionResultDto, QuestionResult>(funcMain2);
-            result.Id = p3.Id;
+            result.StudentId = p2.StudentId;
+            result.TopicId = p2.TopicId;
+            result.Score = p2.Score;
+            result.DateTime = p2.DateTime;
+            result.Id = p2.Id;
             return result;
             
         }
-        public static Expression<Func<AttemptDto, Attempt>> ProjectToAttempt => p6 => new Attempt()
+        public static Expression<Func<AttemptDto, Attempt>> ProjectToAttempt => p4 => new Attempt()
         {
-            StudentId = p6.StudentId,
-            TopicId = p6.TopicId,
-            Score = p6.Score,
-            DateTime = p6.DateTime,
-            QuestionResults = p6.QuestionResults.Select<QuestionResultDto, QuestionResult>(p7 => new QuestionResult()
-            {
-                AttemptId = p7.AttemptId,
-                QuestionId = p7.QuestionId,
-                Result = p7.Result,
-                Id = p7.Id
-            }),
-            Id = p6.Id
+            StudentId = p4.StudentId,
+            TopicId = p4.TopicId,
+            Score = p4.Score,
+            DateTime = p4.DateTime,
+            Id = p4.Id
         };
-        public static AttemptDto AdaptToDto(this Attempt p8)
+        public static AttemptDto AdaptToDto(this Attempt p5)
         {
-            return p8 == null ? null : new AttemptDto()
+            return p5 == null ? null : new AttemptDto()
             {
-                StudentId = p8.StudentId,
-                TopicId = p8.TopicId,
-                Score = p8.Score,
-                DateTime = p8.DateTime,
-                QuestionResults = p8.QuestionResults == null ? null : p8.QuestionResults.Select<QuestionResult, QuestionResultDto>(funcMain3),
-                Id = p8.Id
-            };
-        }
-        public static AttemptDto AdaptTo(this Attempt p10, AttemptDto p11)
-        {
-            if (p10 == null)
-            {
-                return null;
-            }
-            AttemptDto result = p11 ?? new AttemptDto();
-            
-            result.StudentId = p10.StudentId;
-            result.TopicId = p10.TopicId;
-            result.Score = p10.Score;
-            result.DateTime = p10.DateTime;
-            result.QuestionResults = p10.QuestionResults == null ? null : p10.QuestionResults.Select<QuestionResult, QuestionResultDto>(funcMain4);
-            result.Id = p10.Id;
-            return result;
-            
-        }
-        public static Expression<Func<Attempt, AttemptDto>> ProjectToDto => p13 => new AttemptDto()
-        {
-            StudentId = p13.StudentId,
-            TopicId = p13.TopicId,
-            Score = p13.Score,
-            DateTime = p13.DateTime,
-            QuestionResults = p13.QuestionResults.Select<QuestionResult, QuestionResultDto>(p14 => new QuestionResultDto()
-            {
-                AttemptId = p14.AttemptId,
-                QuestionId = p14.QuestionId,
-                Result = p14.Result,
-                Id = p14.Id
-            }),
-            Id = p13.Id
-        };
-        
-        private static QuestionResult funcMain1(QuestionResultDto p2)
-        {
-            return p2 == null ? null : new QuestionResult()
-            {
-                AttemptId = p2.AttemptId,
-                QuestionId = p2.QuestionId,
-                Result = p2.Result,
-                Id = p2.Id
-            };
-        }
-        
-        private static QuestionResult funcMain2(QuestionResultDto p5)
-        {
-            return p5 == null ? null : new QuestionResult()
-            {
-                AttemptId = p5.AttemptId,
-                QuestionId = p5.QuestionId,
-                Result = p5.Result,
+                StudentId = p5.StudentId,
+                TopicId = p5.TopicId,
+                Score = p5.Score,
+                DateTime = p5.DateTime,
                 Id = p5.Id
             };
         }
-        
-        private static QuestionResultDto funcMain3(QuestionResult p9)
+        public static AttemptDto AdaptTo(this Attempt p6, AttemptDto p7)
         {
-            return p9 == null ? null : new QuestionResultDto()
+            if (p6 == null)
             {
-                AttemptId = p9.AttemptId,
-                QuestionId = p9.QuestionId,
-                Result = p9.Result,
-                Id = p9.Id
-            };
+                return null;
+            }
+            AttemptDto result = p7 ?? new AttemptDto();
+            
+            result.StudentId = p6.StudentId;
+            result.TopicId = p6.TopicId;
+            result.Score = p6.Score;
+            result.DateTime = p6.DateTime;
+            result.Id = p6.Id;
+            return result;
+            
         }
-        
-        private static QuestionResultDto funcMain4(QuestionResult p12)
+        public static Expression<Func<Attempt, AttemptDto>> ProjectToDto => p8 => new AttemptDto()
         {
-            return p12 == null ? null : new QuestionResultDto()
-            {
-                AttemptId = p12.AttemptId,
-                QuestionId = p12.QuestionId,
-                Result = p12.Result,
-                Id = p12.Id
-            };
-        }
+            StudentId = p8.StudentId,
+            TopicId = p8.TopicId,
+            Score = p8.Score,
+            DateTime = p8.DateTime,
+            Id = p8.Id
+        };
     }
 }
