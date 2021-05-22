@@ -1,10 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.DataAccess", "QuizApp.DataAccess\QuizApp.DataAccess.csproj", "{EE2D822D-8AA3-4967-92D3-226AF85CE689}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizApp.DataAccess", "QuizApp.DataAccess\QuizApp.DataAccess.csproj", "{EE2D822D-8AA3-4967-92D3-226AF85CE689}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.Business", "QuizApp.Business\QuizApp.Business.csproj", "{EA0F3013-CCC1-4617-97EC-2B04E1713358}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizApp.Business", "QuizApp.Business\QuizApp.Business.csproj", "{EA0F3013-CCC1-4617-97EC-2B04E1713358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.API", "QuizApp.API\QuizApp.API.csproj", "{8141AB54-981B-4DE3-AF2D-3AA66A2DD8E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizApp.API", "QuizApp.API\QuizApp.API.csproj", "{8141AB54-981B-4DE3-AF2D-3AA66A2DD8E5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EA0F3013-CCC1-4617-97EC-2B04E1713358} = {EA0F3013-CCC1-4617-97EC-2B04E1713358}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,10 +18,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4107D9A6-390B-4F61-BBD1-7BCC1B48EB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4107D9A6-390B-4F61-BBD1-7BCC1B48EB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4107D9A6-390B-4F61-BBD1-7BCC1B48EB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4107D9A6-390B-4F61-BBD1-7BCC1B48EB36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EE2D822D-8AA3-4967-92D3-226AF85CE689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE2D822D-8AA3-4967-92D3-226AF85CE689}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE2D822D-8AA3-4967-92D3-226AF85CE689}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -28,5 +30,11 @@ Global
 		{8141AB54-981B-4DE3-AF2D-3AA66A2DD8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8141AB54-981B-4DE3-AF2D-3AA66A2DD8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8141AB54-981B-4DE3-AF2D-3AA66A2DD8E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86209471-A49D-489E-A1E7-B081E25E84C4}
 	EndGlobalSection
 EndGlobal

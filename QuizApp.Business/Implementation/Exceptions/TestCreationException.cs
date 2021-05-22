@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace QuizApp.Business.Implementation
+namespace QuizApp.Business.Implementation.Exceptions
 {
     [Serializable]
     public class TestCreationException : Exception

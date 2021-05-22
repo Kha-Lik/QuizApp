@@ -13,7 +13,8 @@ namespace QuizApp.Business.Extensions
             {
                 Id = p1.Id,
                 Name = p1.Name,
-                Surname = p1.Surname
+                Surname = p1.Surname,
+                Role = p1.Role
             };
         }
         public static User AdaptTo(this UserDto p2, User p3)
@@ -27,6 +28,7 @@ namespace QuizApp.Business.Extensions
             result.Id = p2.Id;
             result.Name = p2.Name;
             result.Surname = p2.Surname;
+            result.Role = p2.Role;
             return result;
             
         }
@@ -34,7 +36,8 @@ namespace QuizApp.Business.Extensions
         {
             Id = p4.Id,
             Name = p4.Name,
-            Surname = p4.Surname
+            Surname = p4.Surname,
+            Role = p4.Role
         };
         public static UserDto AdaptToDto(this User p5)
         {
@@ -42,7 +45,8 @@ namespace QuizApp.Business.Extensions
             {
                 Id = p5.Id,
                 Name = p5.Name,
-                Surname = p5.Surname
+                Surname = p5.Surname,
+                Role = p5.Role
             };
         }
         public static UserDto AdaptTo(this User p6, UserDto p7)
@@ -56,6 +60,7 @@ namespace QuizApp.Business.Extensions
             result.Id = p6.Id;
             result.Name = p6.Name;
             result.Surname = p6.Surname;
+            result.Role = p6.Role;
             return result;
             
         }
@@ -63,7 +68,8 @@ namespace QuizApp.Business.Extensions
         {
             Id = p8.Id,
             Name = p8.Name,
-            Surname = p8.Surname
+            Surname = p8.Surname,
+            Role = p8.Role
         };
 
         public static User AdaptToUser(this UserRegistrationModel p9)

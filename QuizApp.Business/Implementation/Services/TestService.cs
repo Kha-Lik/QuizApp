@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using QuizApp.Business.Abstraction;
 using QuizApp.Business.Extensions;
+using QuizApp.Business.Implementation.Exceptions;
 using QuizApp.Business.Models;
 using QuizApp.DataAccess.Implementation;
 
@@ -42,7 +43,7 @@ namespace QuizApp.Business.Implementation.Services
         {
             await _userValidator.ValidateAsync(student);
             
-            return  _attemptService.GetEntitiesByPrincipalId(student.Id)
+            return _attemptService.GetEntitiesByPrincipalId(student.Id)
                 .Where(a => a.TopicId.Equals(topicId)).ToEnumerable();
         }
 
