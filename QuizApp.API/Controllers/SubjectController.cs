@@ -44,7 +44,7 @@ namespace QuizApp.API.Controllers
 
         [Authorize(Roles = "Lecturer")]
         [HttpPost("Subject")]
-        public async Task<ActionResult<SubjectDto>> Create(SubjectDto subjectDto)
+        public async Task<ActionResult> Create([FromBody]SubjectDto subjectDto)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace QuizApp.API.Controllers
                 return BadRequest(e.Message);
             }
 
-            return Ok(subjectDto);
+            return CreatedAtAction(nameof(Create), new { subjectDto.Id }, subjectDto);
         }
 
         [Authorize(Roles = "Lecturer")]
