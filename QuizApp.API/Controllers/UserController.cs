@@ -21,28 +21,28 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Get all lecturers")]
+        [HttpGet("Lecturers")]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetAllLecturers()
         {
             return await _userService.GetUsersByRole("Lecturer").ToListAsync();
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Get all students")]
+        [HttpGet("Students")]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetAllStudents()
         {
             return await _userService.GetUsersByRole("Student").ToListAsync();
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Get lecturer by id = {id}")]
+        [HttpGet("{LecturerId}")]
         public async Task<ActionResult<UserDto>> GetLecturerById(string id)
         {
             return await _userService.GetUserByIdAndRole(id, "Lecturer");
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Get student by id = {id}")]
+        [HttpGet("{StudentId}")]
         public async Task<ActionResult<UserDto>> GetStudentById(string id)
         {
             return await _userService.GetUserByIdAndRole(id, "Student");
