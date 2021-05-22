@@ -59,11 +59,11 @@ namespace QuizApp.API.Controllers
 
         [Authorize(Roles = "Lecturer")]
         [HttpPut("Topic")]
-        public async Task<ActionResult<TopicDto>> Update(TopicDto topicDto)
+        public async Task<ActionResult> Update(TopicDto topicDto)
         {
             await _topicService.UpdateEntity(topicDto);
 
-            return Ok(topicDto);
+            return Ok();
         }
 
         [Authorize(Roles = "Lecturer")]
