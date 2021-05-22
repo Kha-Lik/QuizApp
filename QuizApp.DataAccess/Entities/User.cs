@@ -11,5 +11,7 @@ namespace QuizApp.DataAccess.Entities
         public string Name { get; set; }
         [DataMember]
         public string Surname { get; set; }
+        [DataMember]
+        public string Role { get; set; }
     }
 }
