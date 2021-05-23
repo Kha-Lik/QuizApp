@@ -23,16 +23,16 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Results")]
-        public async Task<ActionResult<IEnumerable<AttemptDto>>> GetResultsAsync(UserDto user, string topicId)
+        [HttpPost("Results")]
+        public async Task<ActionResult<IEnumerable<AttemptDto>>> GetResultsAsync([FromBody]UserDto user, string topicId)
         {
             var result = await _testService.GetTestResultsForStudentAsync(user, topicId);
             return Ok(result);
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Test")]
-        public async Task<ActionResult<IEnumerable<AttemptDto>>> GetTestAsync(UserDto user, string topicId)
+        [HttpPost("CreateTest")]
+        public async Task<ActionResult<TestModel>> GetTestAsync([FromBody]UserDto user, string topicId)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpPost("Test")]
+        [HttpPost("Submit")]
         public async Task<ActionResult> SubmitTestAsync(TestModel test)
         {
             try

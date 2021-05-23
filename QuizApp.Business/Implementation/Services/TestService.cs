@@ -52,6 +52,10 @@ namespace QuizApp.Business.Implementation.Services
             await _userValidator.ValidateAsync(student);
 
             var topic = await _topicService.GetByIdAsync(topicId);
+            if (topic is null)
+            {
+                throw new TestCreationException("There are no topic with this id");
+            }
             
             var attemptsCount = (await GetTestResultsForStudentAsync(student, topicId)).Count();
             if (attemptsCount >= topic.MaxAttemptCount) 
