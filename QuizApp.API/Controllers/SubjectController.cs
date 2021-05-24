@@ -22,29 +22,29 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet]
+        [HttpGet("Subjects")]
         public async Task<ActionResult<IEnumerable<SubjectDto>>> GetAll()
         {
             return await _subjectService.GetAllAsync().ToListAsync();
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Get by id = {id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<SubjectDto>> GetById(string id)
         {
             return await _subjectService.GetByIdAsync(id);
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Get by lecturer id = {id}")]
+        [HttpGet("{LecturerId}")]
         public async Task<ActionResult<IEnumerable<SubjectDto>>> GetByLecturerId(string id)
         {
             return await _subjectService.GetEntitiesByPrincipalId(id).ToListAsync();
         }
 
         [Authorize(Roles = "Lecturer")]
-        [HttpPost]
-        public async Task<ActionResult<SubjectDto>> Create(SubjectDto subjectDto)
+        [HttpPost("Subject")]
+        public async Task<ActionResult> Create([FromBody]SubjectDto subjectDto)
         {
             try
             {
@@ -55,16 +55,23 @@ namespace QuizApp.API.Controllers
                 return BadRequest(e.Message);
             }
 
-            return Ok(subjectDto);
+            return CreatedAtAction(nameof(Create), new { subjectDto.Id }, subjectDto);
         }
 
         [Authorize(Roles = "Lecturer")]
-        [HttpPut]
-        public async Task<ActionResult<SubjectDto>> Update(SubjectDto subjectDto)
+        [HttpPut("Subject")]
+        public async Task<ActionResult> Update(SubjectDto subjectDto)
         {
-            await _subjectService.UpdateEntity(subjectDto);
+            try
+            {
+                await _subjectService.UpdateEntity(subjectDto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
-            return Ok(subjectDto);
+            return Ok();
         }
 
         [Authorize(Roles = "Lecturer")]

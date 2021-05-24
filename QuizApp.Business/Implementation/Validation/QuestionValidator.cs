@@ -9,6 +9,7 @@ namespace QuizApp.Business.Implementation.Validation
         {
             RuleFor(q => q.Id).NotNull();
             RuleFor(q => q.QuestionNumber).GreaterThan(0);
+            RuleFor(q => q.QuestionText).NotEmpty();
             RuleFor(q => q.TopicId).NotNull();
         }
     }

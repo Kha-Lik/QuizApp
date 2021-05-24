@@ -22,7 +22,7 @@ namespace QuizApp.API.Controllers
             _userService = userService;
         }
 
-        [HttpPost("Sign in")]
+        [HttpPost("SignIn")]
         public async Task<ActionResult> Login(UserLoginModel model)
         {
             try
@@ -36,7 +36,7 @@ namespace QuizApp.API.Controllers
             }
         }
 
-        [HttpPost("Sign up")]
+        [HttpPost("SignUp")]
         public async Task<ActionResult> Register(UserRegistrationModel model)
         {
             try
@@ -73,21 +73,21 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Administrator")]
-        [HttpGet("Get all users")]
+        [HttpGet("Users")]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
         {
             return await _userService.GetUsersAsync().ToListAsync(); 
         }
 
         [Authorize(Roles = "Administrator")]
-        [HttpGet("Get all roles")]
+        [HttpGet("Roles")]
         public async Task<ActionResult<IEnumerable<IdentityRole>>> GetAllRoles()
         {
             return await _userService.GetRolesAsync().ToListAsync();
         }
 
         [Authorize(Roles = "Administrator")]
-        [HttpPut]
+        [HttpPut("User")]
         public async Task<ActionResult> SetRoleAsync(UserDto model)
         {
             try
