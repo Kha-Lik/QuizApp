@@ -83,18 +83,18 @@ namespace QuizApp.UnitTests.BLLTests
             _context.Answers.AsQueryable().CountAsync().Result.Should().Be(numberOfItemsInDatabase - 1);
             _context.Answers.FindAsync("answer2").Result.Should().BeNull();
         }
-        /*
+        
         [Test]
         public async Task UpdateAsync_UpdateWithId1_ModelIsUpdated()
         {
-            var answerBeforeUpdate = await _context.Answers.AsNoTracking().FirstOrDefaultAsync(c => c.Id == 1);
+            var answerBeforeUpdate = await _context.Answers.AsNoTracking().FirstOrDefaultAsync(c => c.Id == "answer1");
 
-            await _service.UpdateAsync(1, new AnswerDto { Id = 1, Products = new List<ProductDto>(), TotalPrice = 1488 });
+            await _service.UpdateEntity(new AnswerDto { Id = "answer1", AnswerText = "x = 100", IsCorrect = true, QuestionId = "question1" });
 
-            var answerAfterUpdate = await _context.Answers.AsNoTracking().FirstOrDefaultAsync(c => c.Id == 1);
+            var answerAfterUpdate = await _context.Answers.AsNoTracking().FirstOrDefaultAsync(c => c.Id == "answer1");
             answerAfterUpdate.Id.Should().Be(answerBeforeUpdate.Id);
-            answerAfterUpdate.TotalPrice.Should().NotBe(answerBeforeUpdate.TotalPrice);
+            answerAfterUpdate.AnswerText.Should().NotBe(answerBeforeUpdate.AnswerText);
             _validator.VerifyAll();
-        }*/
+        }
     }
 }
