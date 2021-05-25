@@ -86,6 +86,7 @@ namespace QuizApp.API
                 app.UseHsts();
             }
 
+            app.UseCors("AllowOrigin");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -103,7 +104,6 @@ namespace QuizApp.API
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseCors("AllowOrigin");
 
             app.UseEndpoints(endpoints =>
             {

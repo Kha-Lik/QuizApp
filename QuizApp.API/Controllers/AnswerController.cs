@@ -20,29 +20,29 @@ namespace QuizApp.API.Controllers
             _answerService = answerService;
         }
 
-        [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Answers")]
+        //[Authorize(Roles = "Lecturer, Student")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<AnswerDto>>> GetAll()
         {
             return await _answerService.GetAllAsync().ToListAsync();
         }
 
-        [Authorize(Roles = "Lecturer, Student")]
+        //[Authorize(Roles = "Lecturer, Student")]
         [HttpGet("{id}")]
         public async Task<ActionResult<AnswerDto>> GetById(string id)
         {
             return await _answerService.GetByIdAsync(id);
         }
 
-        [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("{SubjectId}")]
-        public async Task<ActionResult<IEnumerable<AnswerDto>>> GetBySubjectId(string id)
+        //[Authorize(Roles = "Lecturer, Student")]
+        [HttpGet("question={id}")]
+        public async Task<ActionResult<IEnumerable<AnswerDto>>> GetByQuestionId(string id)
         {
             return await _answerService.GetEntitiesByPrincipalId(id).ToListAsync();
         }
 
         [Authorize(Roles = "Lecturer")]
-        [HttpPost("Answer")]
+        [HttpPost]
         public async Task<ActionResult> Create([FromBody]AnswerDto answerDto)
         {
             try
@@ -58,7 +58,7 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer")]
-        [HttpPut("Answer")]
+        [HttpPut]
         public async Task<ActionResult> Update(AnswerDto answerDto)
         {
             try

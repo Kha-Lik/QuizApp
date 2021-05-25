@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using QuizApp.API;
 
-namespace eShop.IntegrationTests
+namespace QuizApp.IntegrationTests.Factory
 {
     internal class CustomAppFactory : WebApplicationFactory<Startup>
     {
