@@ -47,7 +47,9 @@ namespace QuizApp.IntegrationTests.Factory
             context.Answers.Add(new Answer { Id = "answer3", AnswerText = "Because", IsCorrect = true, QuestionId = "question2" });
             context.Answers.Add(new Answer { Id = "answer4", AnswerText = "London is the capital of Great Britain", IsCorrect = false, QuestionId = "question2" });
             context.Attempts.Add(new Attempt { Id = "attempt1", DateTime = DateTime.Now, Score = 100, StudentId = "1", TopicId = "topic2" });
+            context.Attempts.Add(new Attempt { Id = "attempt3", DateTime = DateTime.Now, Score = 75, StudentId = "1", TopicId = "topic2" });
             context.QuestionResults.Add(new QuestionResult { Id = "questionResult1", AttemptId = "attempt1", QuestionId = "question2", Result = true });
+            context.QuestionResults.Add(new QuestionResult { Id = "questionResult3", AttemptId = "attempt3", QuestionId = "question2", Result = false });
 
             context.SaveChanges();
         }

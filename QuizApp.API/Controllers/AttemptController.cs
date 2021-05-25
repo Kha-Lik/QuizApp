@@ -20,28 +20,28 @@ namespace QuizApp.API.Controllers
             _attemptService = attemptService;
         }
 
-        [Authorize(Roles = "Lecturer, Student")]
+        //[Authorize(Roles = "Lecturer, Student")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AttemptDto>>> GetAll()
         {
             return await _attemptService.GetAllAsync().ToListAsync();
         }
 
-        [Authorize(Roles = "Lecturer, Student")]
+        //[Authorize(Roles = "Lecturer, Student")]
         [HttpGet("{id}")]
         public async Task<ActionResult<AttemptDto>> GetById(string id)
         {
             return await _attemptService.GetByIdAsync(id);
         }
 
-        [Authorize(Roles = "Lecturer, Student")]
+        //[Authorize(Roles = "Lecturer, Student")]
         [HttpGet("student={id}")]
         public async Task<ActionResult<IEnumerable<AttemptDto>>> GetByStudentId(string id)
         {
             return await _attemptService.GetEntitiesByPrincipalId(id).ToListAsync();
         }
 
-        [Authorize(Roles = "Lecturer")]
+        //[Authorize(Roles = "Lecturer")]
         [HttpPost]
         public async Task<ActionResult> Create([FromBody]AttemptDto attemptDto)
         {
@@ -57,7 +57,7 @@ namespace QuizApp.API.Controllers
             return CreatedAtAction(nameof(Create), new { attemptDto.Id }, attemptDto);
         }
 
-        [Authorize(Roles = "Lecturer")]
+        //[Authorize(Roles = "Lecturer")]
         [HttpPut]
         public async Task<ActionResult> Update(AttemptDto attemptDto)
         {
@@ -73,7 +73,7 @@ namespace QuizApp.API.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "Lecturer")]
+        //[Authorize(Roles = "Lecturer")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(string id)
         {
