@@ -21,7 +21,7 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Topics")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<TopicDto>>> GetAll()
         {
             return await _topicService.GetAllAsync().ToListAsync();
@@ -35,14 +35,14 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("{SubjectId}")]
+        [HttpGet("subject={id}")]
         public async Task<ActionResult<IEnumerable<TopicDto>>> GetBySubjectId(string id)
         {
             return await _topicService.GetEntitiesByPrincipalId(id).ToListAsync();
         }
 
         [Authorize(Roles = "Lecturer")]
-        [HttpPost("Topic")]
+        [HttpPost]
         public async Task<ActionResult> Create([FromBody]TopicDto topicDto)
         {
             try
@@ -58,7 +58,7 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer")]
-        [HttpPut("Topic")]
+        [HttpPut]
         public async Task<ActionResult> Update(TopicDto topicDto)
         {
             try

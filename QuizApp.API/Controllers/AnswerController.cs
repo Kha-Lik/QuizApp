@@ -41,7 +41,7 @@ namespace QuizApp.API.Controllers
             return await _answerService.GetEntitiesByPrincipalId(id).ToListAsync();
         }
 
-        [Authorize(Roles = "Lecturer")]
+        //[Authorize(Roles = "Lecturer")]
         [HttpPost]
         public async Task<ActionResult> Create([FromBody]AnswerDto answerDto)
         {
@@ -57,7 +57,7 @@ namespace QuizApp.API.Controllers
             return CreatedAtAction(nameof(Create), new { answerDto.Id }, answerDto);
         }
 
-        [Authorize(Roles = "Lecturer")]
+        //[Authorize(Roles = "Lecturer")]
         [HttpPut]
         public async Task<ActionResult> Update(AnswerDto answerDto)
         {
@@ -73,7 +73,7 @@ namespace QuizApp.API.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "Lecturer")]
+        //[Authorize(Roles = "Lecturer")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(string id)
         {
