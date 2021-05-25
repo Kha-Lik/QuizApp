@@ -56,25 +56,46 @@ class SubjectTopicTable extends Component<SubjectTopicTableProps,
         this.setState({subjectFormOpen: true});
     };
 
-    handleSubjectFormClose = () => {
-        this.setState({subjectFormOpen: false});
+    handleSubjectFormClose = (subject: Subject) => {
+        const subjects = [...(this.state.subjects as Array<Subject>)];
+        subjects.push(subject);
+        this.setState({subjectFormOpen: false, subjects});
     };
 
     handleTopicFormOpen = () => {
         this.setState({topicFormOpen: true});
     };
 
-    handleTopicFormClose = () => {
-        this.setState({topicFormOpen: false});
+    handleTopicFormClose = (topic: Topic) => {
+        const topics = [...(this.state.topics as Array<Topic>)];
+        topics.push(topic);
+        this.setState({topicFormOpen: false, topics});
     };
 
     handleQuestionFormOpen = () => {
         this.setState({questionFormOpen: true});
     };
 
-    handleQuestionFormClose = () => {
-        this.setState({questionFormOpen: false});
+    handleQuestionFormClose = (question: Question) => {
+        const questions = [...(this.state.questions as Array<Question>)];
+        questions.push(question);
+        this.setState({questionFormOpen: false, questions});
     };
+    
+    handleSubjectDelete = (id: string) => {
+        const subjects = [...(this.state.subjects as Array<Subject>).filter(s => s.Id !== id)];
+        this.setState({subjects});
+    };
+
+    handleTopicDelete = (id: string) => {
+        const topics = [...(this.state.subjects as Array<Topic>).filter(s => s.Id !== id)];
+        this.setState({topics});
+    };
+
+    handleQuestionDelete = (id: string) => {
+        const questions = [...(this.state.subjects as Array<Question>).filter(s => s.Id !== id)];
+        this.setState({questions});
+    }
 
     render() {
         const {subjects, topics, questions} = this.state;
@@ -109,7 +130,7 @@ class SubjectTopicTable extends Component<SubjectTopicTableProps,
                                 createButton={true}
                                 deleteButton={true}
                                 onCreate={this.handleSubjectFormOpen}
-                                onDelete={(id: string) => console.log(`Subject ${id} deleted`)}
+                                onDelete={this.handleSubjectDelete}
                                 onSelectionChanged={this.handleSubjectSelectionChanged}
                             />
                         </Paper>
@@ -124,7 +145,7 @@ class SubjectTopicTable extends Component<SubjectTopicTableProps,
                                     createButton={true}
                                     deleteButton={true}
                                     onCreate={this.handleTopicFormOpen}
-                                    onDelete={(id: string) => console.log(`Topic ${id} deleted`)}
+                                    onDelete={this.handleTopicDelete}
                                     onSelectionChanged={this.handleTopicSelectionChanged}
                                 />
                             </Paper>
@@ -139,9 +160,7 @@ class SubjectTopicTable extends Component<SubjectTopicTableProps,
                                     idProperty="Id"
                                     createButton={true}
                                     deleteButton={true}
-                                    onDelete={(id: string) =>
-                                        console.log(`Question ${id} deleted`)
-                                    }
+                                    onDelete={this.handleQuestionDelete}
                                     onCreate={this.handleQuestionFormOpen}
                                 />
                             </Paper>

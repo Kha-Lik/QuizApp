@@ -1,7 +1,7 @@
 import React from "react";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {Backdrop, Fade, Modal, Paper} from "@material-ui/core";
-import TopicCreationForm from "./topicCreationForm";
+import SubjectCreationForm from "./subjectCreationForm";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -13,22 +13,20 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export interface ModalTopicCreateProps {
+export interface ModalSubjectCreateProps {
     openState: boolean;
     doClose: Function;
-    selectedSubject: string;
 }
 
-export default function ModalTopicCreate({
-                                             openState,
-                                             doClose,
-                                             selectedSubject,
-                                         }: ModalTopicCreateProps) {
+export default function ModalSubjectCreate({
+                                               openState,
+                                               doClose,
+                                           }: ModalSubjectCreateProps) {
     const classes = useStyles();
 
     return (
         <Modal
-            id="topicCreation"
+            id="subjecCreation"
             className={classes.modal}
             open={openState}
             onClose={() => doClose()}
@@ -40,10 +38,7 @@ export default function ModalTopicCreate({
         >
             <Fade in={openState}>
                 <Paper elevation={5} variant="outlined">
-                    <TopicCreationForm
-                        subjectId={selectedSubject}
-                        onSubmit={() => doClose()}
-                    />
+                    <SubjectCreationForm onSubmit={doClose}/>
                 </Paper>
             </Fade>
         </Modal>

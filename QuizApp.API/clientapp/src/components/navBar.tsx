@@ -103,12 +103,19 @@ function NavBar({user}: NavBarProps) {
             </Button>
         </Fragment>
     )
+    
+    const conditionalRender = () => { 
+        if(user.Role === "Lecturer")    
+            return  renderLecturerMenu()
+        else 
+            return  renderStudentMenu()
+    };
+    
     return (
         <AppBar position="sticky" color="primary">
             <Toolbar>
                 <Typography className={title} variant="h4">QuizApp</Typography>
-                {user.Role === "Lecturer" && renderLecturerMenu()}
-                {user.Role === "Student" && renderStudentMenu()}
+                {conditionalRender()}
                 <div className={grow}/>
                 <Button>
                     <Typography className={linkItem}>{user.Sub}</Typography>

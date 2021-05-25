@@ -29,7 +29,7 @@ class SubjectCreationForm extends React.Component<SubjectCreationFormProps,
             LecturerId: "",
         };
         console.log(subject);
-        this.props.onSubmit && this.props.onSubmit();
+        this.props.onSubmit && this.props.onSubmit(subject);
     };
 
     render() {
