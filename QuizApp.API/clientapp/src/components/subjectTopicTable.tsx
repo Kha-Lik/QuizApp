@@ -75,7 +75,6 @@ class SubjectTopicTable extends Component<SubjectTopicTableProps,
     handleQuestionFormOpen = () => {
         this.setState({questionFormOpen: true});
     };
-
     handleQuestionFormClose = (question: Question) => {
         const questions = [...(this.state.questions as Array<Question>)];
         questions.push(question);

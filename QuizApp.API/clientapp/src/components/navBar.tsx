@@ -110,7 +110,6 @@ function NavBar({user}: NavBarProps) {
         else 
             return  renderStudentMenu()
     };
-    
     return (
         <AppBar position="sticky" color="primary">
             <Toolbar>

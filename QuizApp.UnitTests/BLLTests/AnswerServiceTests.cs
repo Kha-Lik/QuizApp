@@ -65,7 +65,7 @@ namespace QuizApp.UnitTests.BLLTests
         }
         
         [Test]
-        public async Task AddAsync_AddsItemToDatabase()
+        public async Task CreateAsync_AddsItemToDatabase()
         {
             var numberOfItemsInDatabase = await _context.Answers.AsQueryable().CountAsync();
             await _service.CreateEntityAsync(new AnswerDto { AnswerText = "testanswer", IsCorrect = false, QuestionId = "question1", Id = "testAnswer1" });

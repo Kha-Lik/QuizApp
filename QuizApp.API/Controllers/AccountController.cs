@@ -87,7 +87,7 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Administrator")]
-        [HttpPut("User")]
+        [HttpPut]
         public async Task<ActionResult> SetRoleAsync(UserDto model)
         {
             try

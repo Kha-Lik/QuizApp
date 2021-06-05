@@ -35,14 +35,14 @@ namespace QuizApp.API.Controllers
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("{LecturerId}")]
+        [HttpGet("lecturer={id}")]
         public async Task<ActionResult<UserDto>> GetLecturerById(string id)
         {
             return await _userService.GetUserByIdAndRole(id, "Lecturer");
         }
 
         [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("{StudentId}")]
+        [HttpGet("student={id}")]
         public async Task<ActionResult<UserDto>> GetStudentById(string id)
         {
             return await _userService.GetUserByIdAndRole(id, "Student");

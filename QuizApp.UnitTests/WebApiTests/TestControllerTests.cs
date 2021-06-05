@@ -54,7 +54,7 @@ namespace QuizApp.UnitTests.WebApiTests
             _testService.Setup(s => s.GenerateTestForTopicAsync(_user, "topic1")).ReturnsAsync(_test);
 
             //Act
-            var actionResult = _testController.GetTestAsync(_user, "topic1");
+            var actionResult = _testController.CreateTestAsync(_user, "topic1");
 
             //Assert
             actionResult.Result.Should().BeOfType<ActionResult<TestModel>>();
@@ -67,7 +67,7 @@ namespace QuizApp.UnitTests.WebApiTests
             _testService.Setup(s => s.GenerateTestForTopicAsync(_user, "topic1")).ThrowsAsync(new TestCreationException());
 
             //Act
-            var actionResult = _testController.GetTestAsync(_user, "topic1").Result;
+            var actionResult = _testController.CreateTestAsync(_user, "topic1").Result;
 
             //Assert
             actionResult.Result.Should().BeOfType<BadRequestObjectResult>();
