@@ -96,7 +96,8 @@ class QuestionCreationForm extends React.Component<QuestionCreationFormProps,
         });
         question.TopicId = this.props.topicId;
         console.log(question);
-        this.props.onSubmit && this.props.onSubmit();
+
+        this.props.onSubmit && this.props.onSubmit(question);
     };
 
     render() {

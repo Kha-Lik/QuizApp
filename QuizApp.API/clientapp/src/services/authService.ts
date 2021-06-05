@@ -3,7 +3,7 @@ import {JwtUser} from "../appTypes";
 
 const tokenKey = "token";
 const currentUser: JwtUser = {
-    Sub: "pustik@domain.com",
+    Sub: "pasha@domain.com",
     NameIdentifier: "def",
     Role: "Student",
     Jti: "string"

@@ -42,7 +42,7 @@ export default function ModalTopicCreate({
                 <Paper elevation={5} variant="outlined">
                     <TopicCreationForm
                         subjectId={selectedSubject}
-                        onSubmit={() => doClose()}
+                        onSubmit={doClose}
                     />
                 </Paper>
             </Fade>
