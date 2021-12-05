@@ -66,6 +66,10 @@ namespace QuizApp.API
                         ClockSkew = TimeSpan.Zero
                     };
                 });
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,6 +86,7 @@ namespace QuizApp.API
                 app.UseHsts();
             }
 
+            app.UseCors("AllowOrigin");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -98,6 +103,7 @@ namespace QuizApp.API
 
             app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

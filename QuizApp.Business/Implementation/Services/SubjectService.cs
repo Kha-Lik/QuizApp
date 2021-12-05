@@ -51,10 +51,13 @@ namespace QuizApp.Business.Implementation.Services
 
         public async Task UpdateEntity(SubjectDto model)
         {
-            _helper.ThrowValidationExceptionIfModelIsNull(await _context.Subjects.FindAsync(model.Id));
+            var entity = await _context.Subjects.FindAsync(model.Id);
+            _helper.ThrowValidationExceptionIfModelIsNull(entity);
             await _validator.ValidateAsync(model);
 
-            _context.Subjects.Update(model.AdaptToSubject());
+            entity = model.AdaptTo(entity);
+
+            _context.Subjects.Update(entity);
             await _context.SaveChangesAsync();
         }
 

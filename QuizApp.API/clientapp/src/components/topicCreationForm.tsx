@@ -66,7 +66,7 @@ class TopicCreationForm extends React.Component<TopicCreationFormProps,
         const topic: Topic = {...this.state.topic};
         topic.SubjectId = this.props.subjectId;
         console.log(topic);
-        this.props.onSubmit && this.props.onSubmit();
+        this.props.onSubmit && this.props.onSubmit(topic);
     };
 
     render() {

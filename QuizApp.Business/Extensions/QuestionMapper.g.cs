@@ -12,6 +12,7 @@ namespace QuizApp.Business.Extensions
             return p1 == null ? null : new Question()
             {
                 QuestionNumber = p1.QuestionNumber,
+                QuestionText = p1.QuestionText,
                 TopicId = p1.TopicId,
                 Id = p1.Id
             };
@@ -25,6 +26,7 @@ namespace QuizApp.Business.Extensions
             Question result = p3 ?? new Question();
             
             result.QuestionNumber = p2.QuestionNumber;
+            result.QuestionText = p2.QuestionText;
             result.TopicId = p2.TopicId;
             result.Id = p2.Id;
             return result;
@@ -33,6 +35,7 @@ namespace QuizApp.Business.Extensions
         public static Expression<Func<QuestionDto, Question>> ProjectToQuestion => p4 => new Question()
         {
             QuestionNumber = p4.QuestionNumber,
+            QuestionText = p4.QuestionText,
             TopicId = p4.TopicId,
             Id = p4.Id
         };
@@ -41,6 +44,7 @@ namespace QuizApp.Business.Extensions
             return p5 == null ? null : new QuestionDto()
             {
                 QuestionNumber = p5.QuestionNumber,
+                QuestionText = p5.QuestionText,
                 TopicId = p5.TopicId,
                 Id = p5.Id
             };
@@ -54,6 +58,7 @@ namespace QuizApp.Business.Extensions
             QuestionDto result = p7 ?? new QuestionDto();
             
             result.QuestionNumber = p6.QuestionNumber;
+            result.QuestionText = p6.QuestionText;
             result.TopicId = p6.TopicId;
             result.Id = p6.Id;
             return result;
@@ -62,6 +67,7 @@ namespace QuizApp.Business.Extensions
         public static Expression<Func<Question, QuestionDto>> ProjectToDto => p8 => new QuestionDto()
         {
             QuestionNumber = p8.QuestionNumber,
+            QuestionText = p8.QuestionText,
             TopicId = p8.TopicId,
             Id = p8.Id
         };

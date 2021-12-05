@@ -15,6 +15,7 @@ import TestSelection from "./components/testSelection";
 import TestView from "./components/testView";
 import {JwtUser, User} from "./appTypes";
 import ProtectedRoute from "./components/common/protectedRoute";
+import Forbidden from "./components/common/forbidden";
 
 interface AppState {
     user: JwtUser;
@@ -50,10 +51,11 @@ class App extends Component<AppProps, AppState> {
                             <Route path="/signIn" component={SignIn}/>
                             <Route path="/signUp" component={SignUp}/>
                             <Route path="/not-found" component={NotFound}/>
+                            <Route path={"/forbidden"} component={Forbidden}/>
                             <ProtectedRoute path="/testCreation" component={SubjectTopicTable} role={"Lecturer"}/>
                             <ProtectedRoute path="/studentsResults" component={StudentTestResults} role={"Lecturer"}/>
                             <ProtectedRoute path="/results" component={PersonalResults} role={"Student"}/>
-                            <ProtectedRoute path="/tests" role={"student"}
+                            <ProtectedRoute path="/tests" role={"Student"}
                                    render={(props) =>
                                        <TestSelection {...props} onTestConfirmation={this.onTestConfirmation}/>}/>
                             <ProtectedRoute path="/test" role={"Student"}

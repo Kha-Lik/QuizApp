@@ -20,30 +20,30 @@ namespace QuizApp.API.Controllers
             _questionResultService = questionResultService;
         }
 
-        [Authorize(Roles = "Lecturer, Student")]
+        //[Authorize(Roles = "Lecturer, Student")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<QuestionResultDto>>> GetAll()
         {
             return await _questionResultService.GetAllAsync().ToListAsync();
         }
 
-        [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Get by id = {id}")]
+        //[Authorize(Roles = "Lecturer, Student")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<QuestionResultDto>> GetById(string id)
         {
             return await _questionResultService.GetByIdAsync(id);
         }
 
-        [Authorize(Roles = "Lecturer, Student")]
-        [HttpGet("Get by subject id = {id}")]
-        public async Task<ActionResult<IEnumerable<QuestionResultDto>>> GetBySubjectId(string id)
+        //[Authorize(Roles = "Lecturer, Student")]
+        [HttpGet("attempt={id}")]
+        public async Task<ActionResult<IEnumerable<QuestionResultDto>>> GetByQuestionId(string id)
         {
             return await _questionResultService.GetEntitiesByPrincipalId(id).ToListAsync();
         }
 
-        [Authorize(Roles = "Lecturer")]
+        //[Authorize(Roles = "Lecturer")]
         [HttpPost]
-        public async Task<ActionResult<QuestionResultDto>> Create(QuestionResultDto questionResultDto)
+        public async Task<ActionResult> Create([FromBody]QuestionResultDto questionResultDto)
         {
             try
             {
@@ -54,19 +54,26 @@ namespace QuizApp.API.Controllers
                 return BadRequest(e.Message);
             }
 
-            return Ok(questionResultDto);
+            return CreatedAtAction(nameof(Create), new { questionResultDto.Id }, questionResultDto);
         }
 
-        [Authorize(Roles = "Lecturer")]
+        //[Authorize(Roles = "Lecturer")]
         [HttpPut]
-        public async Task<ActionResult<QuestionResultDto>> Update(QuestionResultDto questionResultDto)
+        public async Task<ActionResult> Update(QuestionResultDto questionResultDto)
         {
-            await _questionResultService.UpdateEntity(questionResultDto);
+            try
+            {
+                await _questionResultService.UpdateEntity(questionResultDto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
-            return Ok(questionResultDto);
+            return Ok();
         }
 
-        [Authorize(Roles = "Lecturer")]
+        //[Authorize(Roles = "Lecturer")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(string id)
         {

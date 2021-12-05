@@ -11,7 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.9" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.4" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.6">
           <PrivateAssets>all</PrivateAssets>
@@ -82,6 +82,14 @@
         <Content Remove="client-app\package-lock.json" />
         <None Remove="client-app\README.md" />
         <Content Remove="client-app\tsconfig.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="clientapp\package-lock.json" />
+      <Content Include="clientapp\package.json" />
+      <Content Include="clientapp\public\manifest.json" />
+      <Content Include="clientapp\src\config.json" />
+      <Content Include="clientapp\tsconfig.json" />
     </ItemGroup>
 
     <ItemGroup>

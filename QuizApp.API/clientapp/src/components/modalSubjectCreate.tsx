@@ -38,7 +38,7 @@ export default function ModalSubjectCreate({
         >
             <Fade in={openState}>
                 <Paper elevation={5} variant="outlined">
-                    <SubjectCreationForm onSubmit={() => doClose()}/>
+                    <SubjectCreationForm onSubmit={doClose}/>
                 </Paper>
             </Fade>
         </Modal>
