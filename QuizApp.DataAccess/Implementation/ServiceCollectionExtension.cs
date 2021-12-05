@@ -9,8 +9,8 @@ namespace QuizApp.DataAccess.Implementation
     {
         public static IServiceCollection AddDalServices(this IServiceCollection services, string connectionString)
         {
-            //services.AddDbContext<QuizDbContext>(builder => builder.UseSqlServer(connectionString));
-            services.AddDbContext<QuizDbContext>(builder => builder.UseInMemoryDatabase("QuizDB"));
+            services.AddDbContext<QuizDbContext>(builder => builder.UseSqlServer(connectionString));
+            //services.AddDbContext<QuizDbContext>(builder => builder.UseInMemoryDatabase("QuizDB"));
             services.AddIdentityCore<User>(opt =>
             {
                 opt.Password.RequireUppercase = true;

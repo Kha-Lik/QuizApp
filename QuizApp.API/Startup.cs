@@ -35,7 +35,7 @@ namespace QuizApp.API
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
 
             services.AddBllServices();
-            services.AddDalServices("Connection string");
+            services.AddDalServices(Configuration.GetConnectionString("QuizDb"));
 
             services.Configure<JwtSettings>(Configuration.GetSection("JWTSettings"));
 

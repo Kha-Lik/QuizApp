@@ -5,7 +5,7 @@
         <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
         <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
         <IsPackable>false</IsPackable>
-        <SpaRoot>ClientApp\</SpaRoot>
+        <SpaRoot>clientapp\</SpaRoot>
         <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
@@ -13,6 +13,10 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.6">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="SonarAnalyzer.CSharp" Version="8.20.0.28934">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -28,10 +32,66 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Remove="client-app\public\index.html" />
+        <Content Remove="client-app\public\manifest.json" />
+        <None Remove="client-app\public\robots.txt" />
+        <None Remove="client-app\src\components\common\commonTypes.d.ts" />
+        <None Remove="client-app\src\components\common\filteredList.tsx" />
+        <None Remove="client-app\src\components\common\listGroup.tsx" />
+        <None Remove="client-app\src\components\common\protectedRoute.tsx" />
+        <None Remove="client-app\src\components\common\requiredInput.tsx" />
+        <None Remove="client-app\src\components\common\table.tsx" />
+        <None Remove="client-app\src\components\common\tableBody.tsx" />
+        <None Remove="client-app\src\components\forbidden.tsx" />
+        <None Remove="client-app\src\components\modalQuestionCreate.tsx" />
+        <None Remove="client-app\src\components\modalSubjectCreate.tsx" />
+        <None Remove="client-app\src\components\modalTestConfirmation.tsx" />
+        <None Remove="client-app\src\components\modalTopicCreate.tsx" />
+        <None Remove="client-app\src\components\navBar.tsx" />
+        <None Remove="client-app\src\components\notFound.tsx" />
+        <None Remove="client-app\src\components\personalResults.tsx" />
+        <None Remove="client-app\src\components\questionCreationForm.tsx" />
+        <None Remove="client-app\src\components\signIn.tsx" />
+        <None Remove="client-app\src\components\signUp.tsx" />
+        <None Remove="client-app\src\components\studentTestResults.tsx" />
+        <None Remove="client-app\src\components\subjectCreationForm.tsx" />
+        <None Remove="client-app\src\components\subjectTopicTable.tsx" />
+        <None Remove="client-app\src\components\testConfirmation.tsx" />
+        <None Remove="client-app\src\components\testSelection.tsx" />
+        <None Remove="client-app\src\components\testView.tsx" />
+        <None Remove="client-app\src\components\topicCreationForm.tsx" />
+        <None Remove="client-app\src\services\authService.ts" />
+        <None Remove="client-app\src\services\fakeAttemptService.ts" />
+        <None Remove="client-app\src\services\fakeQuestionService.ts" />
+        <None Remove="client-app\src\services\fakeSubjectService.ts" />
+        <None Remove="client-app\src\services\fakeTestService.ts" />
+        <None Remove="client-app\src\services\fakeTopicService.ts" />
+        <None Remove="client-app\src\services\fakeuserService.ts" />
+        <None Remove="client-app\src\services\httpService.ts" />
+        <None Remove="client-app\src\App.tsx" />
+        <None Remove="client-app\src\appTypes.d.ts" />
+        <Content Remove="client-app\src\config.json" />
+        <None Remove="client-app\src\index.css" />
+        <None Remove="client-app\src\index.tsx" />
+        <None Remove="client-app\src\logo.svg" />
+        <None Remove="client-app\src\react-app-env.d.ts" />
+        <None Remove="client-app\src\reportWebVitals.ts" />
+        <None Remove="client-app\src\setupTests.ts" />
+        <None Remove="client-app\.gitignore" />
+        <Content Remove="client-app\package.json" />
+        <Content Remove="client-app\package-lock.json" />
+        <None Remove="client-app\README.md" />
+        <Content Remove="client-app\tsconfig.json" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\QuizApp.Business\QuizApp.Business.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="client-app\src\components\common" />
+      <Folder Include="client-app\src\models" />
+      <Folder Include="client-app\src\services" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
